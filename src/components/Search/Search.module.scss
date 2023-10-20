@@ -1,0 +1,39 @@
+.searchContainer {
+    position: relative;
+    cursor: pointer;
+    & img {
+        width: 25px;
+        transition: all 0.5s ease;
+        position: relative;
+        z-index: 2;
+    }
+    & img:hover {
+        transform: scale(1.2, 1.2);
+        transition: all 0.5s ease;
+        position: relative;
+        z-index: 2;
+    }
+    input {
+        height: 33px;
+        padding: 0 35px 0 15px;
+        border-radius: 15px;
+        position: absolute;
+        top: -3px;
+        right: -8px;
+        color: #393E46;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    width: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+.visible {
+    opacity: 1;
+    width: 250px;
+    visibility: visible;
+    transition: all 0.5s ease;
+}

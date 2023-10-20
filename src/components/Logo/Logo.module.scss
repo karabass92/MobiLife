@@ -1,0 +1,16 @@
+.main {
+    padding: 10px 25px;
+    position: relative;
+    border: 2px solid #fff;
+    font-weight: 600;
+}
+
+.phone {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background-color: rgb(25, 177, 178);
+    left: 56px;
+    top: -11px;
+    width: 20px;
+}

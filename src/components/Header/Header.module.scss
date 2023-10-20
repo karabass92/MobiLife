@@ -1,0 +1,27 @@
+.container {
+    width: 100%;
+    background-color: rgb(25, 177, 178);
+}
+
+.main {
+    height: 100px;
+    width: 1440px;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & section {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.leftSection {
+    display: flex;
+    gap: 60px;
+}
+
+.rightSection {
+    display: flex;
+    gap: 20px;
+}
