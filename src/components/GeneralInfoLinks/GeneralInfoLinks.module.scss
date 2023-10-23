@@ -1,16 +1,15 @@
-.navigation {
+.main {
     display: flex;
-    justify-content: space-between;
-    gap: 40px;
+    flex-direction: column;
+    gap: 10px;
 }
+
 .item {
     color: #fff;
-    font-weight: 600;
 }
 
 .item a {
     color: white !important;
-    line-height: 200%;
     transition: all 0.3s ease;
 }
 
@@ -22,10 +21,4 @@
 .item a.active {
     color: black !important;
     transition: all 0.3s ease;
-}
-
-@media(max-width:1040px){
-	.navigation {
-		display: none;
-	}
 }

@@ -1,0 +1,21 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    color: #fff;
+}
+
+.socialsBlock {
+    display: flex;
+    gap: 15px;
+    & img {
+        width: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    & img:hover {
+        transform: scale(1.3, 1.3);
+        transition: all 0.3s ease;
+    }
+}
