@@ -37,3 +37,9 @@
     visibility: visible;
     transition: all 0.5s ease;
 }
+
+@media(max-width:1040px){
+	.searchContainer {
+		display: none;
+	}
+}

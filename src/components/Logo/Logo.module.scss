@@ -3,6 +3,7 @@
     position: relative;
     border: 2px solid #fff;
     font-weight: 600;
+    font-size: clamp(10px, 10vh, 17px);
 }
 
 .phone {

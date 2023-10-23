@@ -1,6 +1,9 @@
 .container {
     width: 100%;
+    display: flex;
+    justify-content: space-around;
     background-color: rgb(25, 177, 178);
+    box-shadow: 0 5px 5px rgba(12, 87, 87, 0.685);
 }
 
 .main {
@@ -24,4 +27,11 @@
 .rightSection {
     display: flex;
     gap: 20px;
+}
+
+@media(max-width:1440px){
+	.main {
+		padding: 0 10px;
+        height: min(70px, 20vh, 100px);
+	}
 }
