@@ -6,7 +6,7 @@ const GeneralInfoLinks = () => {
     return (
         <section className={style.main}>
             <p>
-                Общее: 
+                Общее : 
             </p>
             <div className={style.item}>
                 <NavLink to={'/guarantee'} className={(linkClass) => linkClass.isActive
