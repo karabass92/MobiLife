@@ -1,11 +1,13 @@
-import { Fragment } from 'react';
+import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
+import style from './About.module.scss';
 
 
 const About = () => {
     return (
-        <Fragment>
+        <main className={style.main}>
+            <BreadCrumbs header='О нас' />
             About
-        </Fragment>
+        </main>
     )
 };
 

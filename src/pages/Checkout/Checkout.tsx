@@ -1,11 +1,13 @@
-import { Fragment } from 'react';
+import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
+import style from './Checkout.module.scss';
 
 
 const Checkout = () => {
     return (
-        <Fragment>
+        <main className={style.main}>
+            <BreadCrumbs header='Оформить заказ' />
             Checkout
-        </Fragment>
+        </main>
     )
 };
 
