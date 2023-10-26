@@ -1,10 +1,13 @@
 .main {
     width: min(1440px, 100%);
     margin-inline: auto;
+    background-color: #fff;
+    padding-bottom: 40px;
 }
 
 .contactInfo {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: min(105px, 8vw);
     margin: min(11.7vw, 130px) 0;
@@ -22,17 +25,9 @@
     }
 }
 
-.formHeader {
-    font-weight: 500;
-    font-size: 25px;
-    line-height: 140%;
-    letter-spacing: 0.02em;
-    margin-bottom: 62px;
-}
-
 @media(max-width:1440px){
     .main {
-        padding: 0 10px;
+        padding: 0 10px 30px 10px;
     }
 }
 

@@ -1,7 +1,8 @@
 .mapContainer {
     width: min(1109px, 100%);
     height: min(476px, 42.8vw);
-    border: 1px solid #fff;
+    margin-inline: auto;
+    border: 1px solid rgb(25, 177, 178);
 }
 
 .map {

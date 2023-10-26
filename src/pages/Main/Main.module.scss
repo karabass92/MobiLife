@@ -1,6 +1,8 @@
 .main {
     width: min(1440px, 100%);
     margin-inline: auto;
+    background-color: #fff;
+    margin-bottom: 40px;
 }
 
 
@@ -19,6 +21,6 @@
 
 @media(max-width:1440px){
     .main {
-        padding: 0 10px;
+        padding: 0 10px 30px 10px;
     }
 }

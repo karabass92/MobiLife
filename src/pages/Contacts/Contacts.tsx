@@ -22,8 +22,9 @@ const Contacts = () => {
                 </div>
                 <div>
                     <h3>Адреса :</h3>
-                    <p>{adressees[0]}</p>
-                    <p>{adressees[1]}</p>
+                    {
+                        adressees.map(el => <p>{el}</p>)
+                    }
                 </div>
             </section>
         </main>
