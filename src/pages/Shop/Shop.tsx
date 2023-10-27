@@ -6,7 +6,10 @@ const Shop = () => {
     return (
         <main className={style.main}>
             <BreadCrumbs header='Каталог' />
-            Shop
+            <p>сортировка по категориям</p>
+            <p>фильтрация по тегам</p>
+            <p>фильтрация по цене</p>
+            <p>дохера товаров</p>
         </main>
     )
 };
