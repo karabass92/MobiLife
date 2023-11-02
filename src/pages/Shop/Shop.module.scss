@@ -5,22 +5,40 @@
     margin-bottom: 40px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.productsContainer {
+    padding: 0 min(30px, 2vw);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 65px 30px;
+    margin-bottom: 65px;
+}
 
 @media(max-width:1440px){
     .main {
         padding: 0 10px 30px 10px;
+    }
+}
+
+@media(max-width:1110px){
+    .productsContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 50px 25px;
+        margin-bottom: 65px;
+    }
+}
+
+@media(max-width:767px){
+    .productsContainer {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 40px 20px;
+        margin-bottom: 40px;
+    }
+}
+
+@media(max-width:384px){
+    .productsContainer {
+        grid-template-columns: 1fr;
+        grid-gap: 20px 0;
+        margin-bottom: 20px;
     }
 }
