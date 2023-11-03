@@ -1,17 +1,36 @@
 .main {
     margin: 55px 0;
     display: flex;
-    gap: 60px;
+    gap: min(60px, 5vw);
     align-items: center;
     font-size: 20px;
     font-weight: 600;
-    & input {
+    & .count {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        text-align: center;
         font-size: 30px;
         font-weight: 700;
+        border: 1px solid balck;
     }
 }
 
-.main input::-webkit-outer-spin-button,
-.main input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+.productCount {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    & button {
+        width: 30px;
+        height: 30px;
+        line-height: 0;
+        border-radius: 50%;
+        background-color: rgb(25, 177, 178);
+        transition: all 0.3s ease;
+    }
+    & button:hover {
+        background: rgb(11, 133, 133);
+        box-shadow: 0 0 5px rgba(12, 87, 87, 0.685);
+        transition: all 0.3s ease;
+    }
 }
