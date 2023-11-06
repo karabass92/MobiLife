@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 import ProductCountToCart from '../../components/ProductCountToCart/ProductCountToCart';
+import ColorSelection from '../../components/ColorSelection/ColorSelection';
 import DefaultButton from '../../components/Button/DefaultButton/DefaultButton';
 import noImg from '../../assets/img/Main/noImg.jpg';
 import style from './Product.module.scss';
@@ -12,10 +13,26 @@ const Product = () => {
             id: 1,
             name: 'Утюг ебать',
             price: '1000',
-            img: ''
+            details: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, consequuntur sapiente praesentium neque ullam tempora, iste dignissimos doloremque quia, pariatur nesciunt molestias dolorum placeat. Sequi repudiandae enim quia quis qui!',
+            img: '',
+            colors: [
+                {
+                    name: 'Night Sea',
+                    code: '#333847'
+                },
+                {
+                    name: 'Aqua Blue',
+                    code: '#B4FDFB'
+                },
+                {
+                    name: 'Sandy Gold',
+                    code: '#EBE0C1'
+                },
+            ]
         };
 
     const [productCount, setProductCount] = useState(1);
+    const [color, setColor] = useState('');
 
     return (
         <main className={style.main}>
@@ -25,13 +42,17 @@ const Product = () => {
                 <section className={style.productInfo}>
                     <h1>{product.name}</h1>
                     <h2>&#8376; {product.price}</h2>
-
                     <article>
-                        ОПИСАНИЕ ТОВАРА Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, consequuntur sapiente praesentium neque ullam tempora, iste dignissimos doloremque quia, pariatur nesciunt molestias dolorum placeat. Sequi repudiandae enim quia quis qui!
+                        {product.details} 
                     </article>
-
-                    <div>ВЫБОР ЦВЕТА (в отдельный компонент)</div>
-
+                    {
+                        product.colors.length > 0 
+                        ? <ColorSelection 
+                            colors={product.colors} 
+                            color={color} 
+                            setColor={setColor} />
+                        : null
+                    }
                     <ProductCountToCart 
                         productCount={productCount} 
                         setProductCount={setProductCount} />
