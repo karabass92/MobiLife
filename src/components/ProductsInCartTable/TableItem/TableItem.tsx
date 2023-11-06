@@ -2,10 +2,11 @@ import ItemCounter from './ItemCounter/ItemCounter';
 import style from './TableItem.module.scss';
 import check from '../../../assets/img/Cart/check.svg';
 import cross from '../../../assets/img/Cart/cross.svg';
+import noImg from '../../../assets/img/Main/noImg.jpg'
 
 
 type Props = {
-    img?: string,
+    photo?: string,
     info: {
         name: string,
         color?: string,
@@ -17,7 +18,7 @@ type Props = {
 
 
 const TableItem = ({
-    img,
+    photo,
     info,
     price,
     count
@@ -27,11 +28,19 @@ const TableItem = ({
             <div className={style.imgContainer}>
                 <img src={check} alt="check" /> 
             </div>
-            <div>
-                Фото
+            <div className={style.productImage} >
+                {
+                    photo
+                    ? <img src={photo} alt={info.name} />
+                    : <img  src={noImg}  alt='no image' />
+                }
             </div>
-            <div>
-                {info.name}
+            <div className={style.productInfo}>
+                {
+                    `${info.name}, 
+                    ${info.color ? `${info.color},` : null} 
+                    ${info.params ? `${info.params},` : null} `
+                }
             </div>
             <div>
                 {price}

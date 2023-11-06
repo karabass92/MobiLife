@@ -1,20 +1,21 @@
 import TableHeader from './TableHeader/TableHeader';
 import TableItem from './TableItem/TableItem';
+import TableFooter from './TableFooter/TableFooter';
 import style from './ProductsInCartTable.module.scss';
 
 
 const ProductsInCartTable = () => {
 
 
-    const data = [
+    const data: any[] = [
         {
             img: '',
             info: {
-                name: 'iphone',
+                name: 'блядский утюг',
                 color: 'silver',
-                params: '128gb'
+                params: 'здоровый и тяжелый пиздец'
             },
-            price: 700000,
+            price: 666,
             count: 1
         },
         {
@@ -47,14 +48,15 @@ const ProductsInCartTable = () => {
                 ? data.map(el => {
                     return (
                         <TableItem
+                            key={el.name}
                             info={el.info}
                             price={el.price}
                             count={el.count} />
                     )
                 })
-                : <div>Корзина пуста</div>
+                : <div className={style.empyCartMessage}>корзина пуста</div>
             }
-            
+            <TableFooter totalPrice={1000} productCount={2} />
         </section>
     );
 };

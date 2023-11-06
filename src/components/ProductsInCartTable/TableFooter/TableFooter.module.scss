@@ -1,0 +1,11 @@
+.main {
+    padding: 0 110px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    & p {
+        font-size: 21px;
+        font-weight: 600;
+        line-height: 52px;
+    }
+}
