@@ -1,9 +1,6 @@
+import TableHeader from './TableHeader/TableHeader';
+import TableItem from './TableItem/TableItem';
 import style from './ProductsInCartTable.module.scss';
-import check from '../../assets/img/Cart/check.svg';
-import cross from '../../assets/img/Cart/cross.svg';
-
-
-
 
 
 const ProductsInCartTable = () => {
@@ -17,8 +14,8 @@ const ProductsInCartTable = () => {
                 color: 'silver',
                 params: '128gb'
             },
-            price: '700000',
-            count: 1.
+            price: 700000,
+            count: 1
         },
         {
             img: '',
@@ -27,8 +24,8 @@ const ProductsInCartTable = () => {
                 color: 'silver',
                 params: '128gb'
             },
-            price: '700000',
-            count: 1.
+            price: 700000,
+            count: 1
         },
         {
             img: '',
@@ -37,63 +34,27 @@ const ProductsInCartTable = () => {
                 color: 'silver',
                 params: '128gb'
             },
-            price: '700000',
-            count: 1.
+            price: 700000,
+            count: 1
         },
     ];
 
 
     return (
         <section className={style.main}>
-            <div className={style.tableHeader}>
-                <div></div>
-                <div>
-                    Фото
-                </div>
-                <div>
-                    Наименование
-                </div>
-                <div>
-                    Цена
-                </div>
-                <div>
-                    Количество
-                </div>
-                <div>
-                    Стоимость
-                </div>
-                <div></div>
-            </div>
-            {
-                data.map(el => {
+            <TableHeader />
+            {data.length > 0
+                ? data.map(el => {
                     return (
-                        <div className={style.tableItem}>
-                            <div className={style.imgContainer}>
-                               <img src={check} alt="check" /> 
-                            </div>
-                            
-                            <div>
-                                Фото
-                            </div>
-                            <div>
-                                Наименование
-                            </div>
-                            <div>
-                                Цена
-                            </div>
-                            <div>
-                                Количество
-                            </div>
-                            <div>
-                                Стоимость
-                            </div>
-                            <div className={style.imgContainer}>
-                                <img src={cross} alt="delete" />
-                            </div>
-                        </div>
+                        <TableItem
+                            info={el.info}
+                            price={el.price}
+                            count={el.count} />
                     )
                 })
+                : <div>Корзина пуста</div>
             }
+            
         </section>
     );
 };

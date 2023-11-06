@@ -1,0 +1,23 @@
+.main {
+    width: 137px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    & button {
+        width: 30px;
+        height: 100%;
+        text-align: center;
+        background-color: #fff;
+        transition: all ease 0.3s;
+    }
+    & button:hover {
+        background-color: #f3f3f3;
+        transition: all ease 0.3s;
+    }
+    & span {
+        line-height: normal;
+    }
+}

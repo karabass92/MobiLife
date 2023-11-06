@@ -1,0 +1,20 @@
+.tableHeader {
+    height: 70px;
+    width: min(1440px, 100%);
+    margin-inline: auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    display: grid;
+    grid-template-columns: 
+        5% 
+        70px
+        minmax(300px, 1fr) 
+        125px 
+        minmax(132px, 1fr) 
+        125px
+        5%;
+    & div {
+        color: rgba(0, 0, 0, 0.50);
+        font-size: 16px;
+        line-height: 65px;
+    }
+}
