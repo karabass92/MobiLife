@@ -6,7 +6,6 @@ import style from './ProductsInCartTable.module.scss';
 
 const ProductsInCartTable = () => {
 
-    
 
     const data: any[] = [
         {
@@ -52,8 +51,7 @@ const ProductsInCartTable = () => {
                 ? data.map(el => {
                     return (
                         <TableItem
-                            key={el.id}
-                            id={el.id}
+                            key={el.name}
                             info={el.info}
                             price={el.price}
                             count={el.count} />
