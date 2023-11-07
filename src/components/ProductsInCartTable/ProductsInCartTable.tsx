@@ -6,9 +6,11 @@ import style from './ProductsInCartTable.module.scss';
 
 const ProductsInCartTable = () => {
 
+    
 
     const data: any[] = [
         {
+            id: 1,
             img: '',
             info: {
                 name: 'блядский утюг',
@@ -19,6 +21,7 @@ const ProductsInCartTable = () => {
             count: 1
         },
         {
+            id: 2,
             img: '',
             info: {
                 name: 'iphone',
@@ -29,6 +32,7 @@ const ProductsInCartTable = () => {
             count: 1
         },
         {
+            id: 3,
             img: '',
             info: {
                 name: 'iphone',
@@ -48,7 +52,8 @@ const ProductsInCartTable = () => {
                 ? data.map(el => {
                     return (
                         <TableItem
-                            key={el.name}
+                            key={el.id}
+                            id={el.id}
                             info={el.info}
                             price={el.price}
                             count={el.count} />

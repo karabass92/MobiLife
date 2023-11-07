@@ -1,6 +1,3 @@
-import style from './ProductFilter.module.scss';
-
-
 const ProductFilter = () => {
     return (
         <section>

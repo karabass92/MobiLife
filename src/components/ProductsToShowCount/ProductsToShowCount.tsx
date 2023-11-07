@@ -1,4 +1,3 @@
-import style from './ProductsToShowCount.module.scss';
 
 
 const ProductsToShowCount = () => {

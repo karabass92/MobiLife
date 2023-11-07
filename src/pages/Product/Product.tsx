@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../../store/hooks';
+import { addProductToCart } from '../../store/slices/cartSlice';
 import { useState } from 'react';
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 import ProductCountToCart from '../../components/ProductCountToCart/ProductCountToCart';
@@ -5,6 +7,7 @@ import ColorSelection from '../../components/ColorSelection/ColorSelection';
 import DefaultButton from '../../components/Button/DefaultButton/DefaultButton';
 import noImg from '../../assets/img/Main/noImg.jpg';
 import style from './Product.module.scss';
+import { IProduct } from '../../interfaces/interfaces';
 
 
 const Product = () => {
@@ -12,9 +15,10 @@ const Product = () => {
     const product = {
             id: 1,
             name: 'Утюг ебать',
-            price: '1000',
+            price: 1000,
             details: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, consequuntur sapiente praesentium neque ullam tempora, iste dignissimos doloremque quia, pariatur nesciunt molestias dolorum placeat. Sequi repudiandae enim quia quis qui!',
             img: '',
+            type: 'утюг',
             colors: [
                 {
                     name: 'Night Sea',
@@ -31,8 +35,19 @@ const Product = () => {
             ]
         };
 
+    const dispatch = useAppDispatch();
+
     const [productCount, setProductCount] = useState(1);
     const [color, setColor] = useState('');
+
+    const onAddProductToCartClick = (product: IProduct): void => {
+        const productToOrder = {
+            ...product,
+            colors: color,
+            count: productCount
+        }
+        dispatch(addProductToCart(productToOrder))
+    };
 
     return (
         <main className={style.main}>
@@ -62,7 +77,9 @@ const Product = () => {
                             height={60}
                             link='/shop'
                             text='Вернуться в магазин' />     
-                        <button className={style.addProductToCartButon}>
+                        <button 
+                            className={style.addProductToCartButon}
+                            onClick={() => onAddProductToCartClick(product)} >
                             Добавить в корзину
                         </button>
                     </div>
