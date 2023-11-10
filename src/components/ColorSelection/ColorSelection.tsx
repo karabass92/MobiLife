@@ -7,7 +7,7 @@ import style from './ColorSelection.module.scss';
 type Props = {
     colors: IColor[],
     color: string,
-    setColor: Function
+    setColor: (color: string) => void
 }
 
 
@@ -19,7 +19,7 @@ const ColorSelection = ({
 
     useEffect(() => {
         setColor(colors[0].color_name);
-    }, []);
+    }, [colors]);
 
     return (
         <div className={style.main}>

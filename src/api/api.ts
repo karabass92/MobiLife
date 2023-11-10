@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { baseURL } from '../constants/api';
+import { 
+    baseURL,
+    productURL
+} from '../constants/api';
 
 
 const instance = axios.create({
@@ -12,10 +15,10 @@ export const shopAPI = {
     async getAllProducts() {
         try {
             return await instance
-                .get(`/product`)
-                .then(response => response.data)
+                .get(`${productURL}`)
+                .then(response => response.data);
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     },
 
@@ -23,5 +26,13 @@ export const shopAPI = {
 
     getProductsByTag() {  },
 
-    getOneProduct() {  }
+    async getOneProduct(productId: string | void) { 
+        try {
+            return await instance
+                .get(`${productURL}${productId}`)
+                .then(response => response.data)
+        } catch (e) {
+            console.log(e);
+        }
+    }
 }

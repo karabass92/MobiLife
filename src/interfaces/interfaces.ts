@@ -45,4 +45,6 @@ export interface IProduct {
     display_reviews: boolean,
     remaining_goods: number,
     display_remaining_goods: boolean,
+    count?: number,
+    selected_color?: string
 }
