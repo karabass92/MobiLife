@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllProducts, selectShop } from '../../store/slices/shopSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
@@ -18,6 +18,8 @@ const Shop = () => {
         dispatch(getAllProducts())
     }, [dispatch]);
 
+    const [page, setPage] = useState<number>(1)
+
     const productsToShow = 
         products.map(el => <ProductCard 
             key={el.id} 
@@ -35,7 +37,10 @@ const Shop = () => {
                 {productsToShow}
             </section>
             <ProductsToShowCount />
-            <Pagination />
+            <Pagination
+                pagesCount={5}
+                page={page}
+                setPage={setPage} />
         </main>
     )
 };

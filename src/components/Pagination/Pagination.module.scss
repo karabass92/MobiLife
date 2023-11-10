@@ -1,0 +1,24 @@
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.paginationButton {
+    width: 41px;
+    height: 41px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background: #E5E5E5;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    text-align: center;
+    letter-spacing: 0.02em;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.activePaginationButton {
+    background: #000;
+    color: #fff;
+}
