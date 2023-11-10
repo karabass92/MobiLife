@@ -10,11 +10,28 @@
     display: flex;
     flex-wrap: wrap;
     gap: min(60px, 3vw);
-    & img {
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .mainImg {
         object-fit: cover;
         width: min(500px, 41vw);
         height: min(700px, 57vw);
         border-radius: 15px;
+    }
+    .imgSeletContainer {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        & img {
+            width: 60px;
+            height: auto;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     }
 }
 

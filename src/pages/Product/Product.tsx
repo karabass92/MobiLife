@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getOneProduct, selectProduct } from '../../store/slices/productSlice';
@@ -23,33 +23,43 @@ const Product = () => {
         dispatch(getOneProduct(productId))
     }, [productId, dispatch]);
 
-
     const [productCount, setProductCount] = useState(1);
-    const [color, setColor] = useState('');
-    
-
-
+    const [img, setImg] = useState<string>('');
 
     const onAddProductToCartClick = (product: IProduct): void => {
         const productToOrder = {
             ...product,
-            colors: color,
             count: productCount
-        }
-        dispatch(addProductToCart(productToOrder))
+        };
+        dispatch(addProductToCart(productToOrder));
     };
 
     if (!product) return <h1>loading</h1>;
-
+    
     return (
         <main className={style.main}>
             <BreadCrumbs header='Каталог' product={product.name_product} />
             <section className={style.productContainer}>
-                <img src={
-                        product.list_url_to_image.length > 0 
-                        ? `${mediaURL}${product.list_url_to_image[0]} `
+                <div className={style.imageContainer}>
+                    <img src={ product.list_url_to_image.length > 0 
+                        ? `${mediaURL}${img ? img : product.list_url_to_image[0]}`
                         : noImg
-                    } alt={product.name_product} />
+                    } alt={product.name_product}
+                    className={style.mainImg} />
+                    { product.list_url_to_image.length > 0
+                        ?   <div className={style.imgSeletContainer}> 
+                                {
+                                    product.list_url_to_image.map((el: string): ReactElement => {
+                                        return <img 
+                                            src={`${mediaURL}${el}`} 
+                                            alt={el}
+                                            onClick={() => setImg(el)}/>
+                                    })
+                                }
+                            </div>
+                        : null
+                    }
+                </div>
                 <section className={style.productInfo}>
                     <h1>{product.name_product}</h1>
                     <h2>&#8376; {product.price}</h2>
@@ -57,11 +67,8 @@ const Product = () => {
                         {product.desc_product} 
                     </article>
                     {
-                        product.all_colors_product.length > 0 
-                        ? <ColorSelection 
-                            colors={product.all_colors_product} 
-                            color={color} 
-                            setColor={setColor} />
+                        product.color 
+                        ? <ColorSelection color={product.color} />
                         : null
                     }
                     <ProductCountToCart 

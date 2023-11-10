@@ -1,6 +1,7 @@
 export interface IColor {
-    color_name: string;
-    color_code: string
+    id: number,
+    color: string,
+    name_color: string
 }
 
 export interface ICategory {
@@ -32,7 +33,7 @@ export interface IProduct {
     tag: Array<ITag>
     display_tag: boolean,
     rating: string,
-    all_colors_products: Array<IColor>,
+    color: IColor,
     list_url_to_image: Array<string>,
     price: string,
     price_with_discount_or_PROMO: string,

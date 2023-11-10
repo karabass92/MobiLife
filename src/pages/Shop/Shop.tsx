@@ -16,6 +16,7 @@ const Shop = () => {
 
     useEffect( ()=> {
         dispatch(getAllProducts())
+        console.log(products)
     }, [dispatch]);
 
     const [page, setPage] = useState<number>(1)
