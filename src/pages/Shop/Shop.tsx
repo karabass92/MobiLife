@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { getAllProducts, selectShop } from '../../store/slices/shopSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import ProductFilter from "../../components/ProductFilter/ProductFilter";
 import ProductCard from "../../components/ProductCard/ProductCard";
@@ -8,50 +11,20 @@ import style from './Shop.module.scss';
 
 const Shop = () => {
 
-    const data = [
-        {
-            id: 1,
-            name: 'УТЮГ',
-            price: '666',
-        },
-        {
-            id: 2,
-            name: 'холодильник ВИТЯЗЬ',
-            price: '13000',
-        },
-        {
-            id: 3,
-            name: 'майфун',
-            price: '1000',
-        },
-        {
-            id: 4,
-            name: 'шоколадка',
-            price: '600',
-        },
-        {
-            id: 5,
-            name: 'лада седан баклажан',
-            price: '9999999',
-        },
-        {
-            id: 6,
-            name: 'КРЫЖИК',
-            price: '1000',
-        },
-        {
-            id: 7,
-            name: 'анализы',
-            price: '1000',
-        },
-    ];
+    const dispatch = useAppDispatch();
+    const products = useAppSelector(selectShop);
+
+    useEffect( ()=> {
+        dispatch(getAllProducts())
+    }, [dispatch]);
 
     const productsToShow = 
-        data.map(el => <ProductCard 
+        products.map(el => <ProductCard 
             key={el.id} 
             id={el.id} 
-            name={el.name} 
-            price={el.price} /> );
+            name={el.name_product} 
+            price={el.price}
+            img={el.list_url_to_image} /> );
 
     return (
         <main className={style.main}>

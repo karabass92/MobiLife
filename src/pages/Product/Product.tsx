@@ -13,26 +13,61 @@ import { IProduct } from '../../interfaces/interfaces';
 const Product = () => {
 
     const product = {
+        id: 1,
+        name_product: 'Утюг ебать',
+        desc_product: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, consequuntur sapiente praesentium neque ullam tempora, iste dignissimos doloremque quia, pariatur nesciunt molestias dolorum placeat. Sequi repudiandae enim quia quis qui!',
+        category: 
+            {    
+                id: 1,
+                name_category: 'утюг',
+                desc_category: 'утюг',
+            },
+        tag: 
+            [
+                {
+                    id: 1,
+                    name_tag: 'string',
+                    desc_tag: 'string',
+                }
+            ],
+        display_tag: false,
+        rating: '5',
+        all_colors_products: [
+            {
+                color_name: 'Night Sea',
+                color_code: '#333847'
+            },
+            {
+                color_name: 'Aqua Blue',
+                color_code: '#B4FDFB'
+            },
+            {
+                color_name: 'Sandy Gold',
+                color_code: '#EBE0C1'
+            },
+        ],
+        list_url_to_image: 
+            [
+                ''
+            ],
+        price: '1000',
+        price_with_discount_or_PROMO: '',
+        display_price: true,
+        discount: '',
+        discount_period: '',
+        display_discount: false,
+        promo: {
             id: 1,
-            name: 'Утюг ебать',
-            price: 1000,
-            details: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, consequuntur sapiente praesentium neque ullam tempora, iste dignissimos doloremque quia, pariatur nesciunt molestias dolorum placeat. Sequi repudiandae enim quia quis qui!',
-            img: '',
-            type: 'утюг',
-            colors: [
-                {
-                    name: 'Night Sea',
-                    code: '#333847'
-                },
-                {
-                    name: 'Aqua Blue',
-                    code: '#B4FDFB'
-                },
-                {
-                    name: 'Sandy Gold',
-                    code: '#EBE0C1'
-                },
-            ]
+            name_promo: 'string',
+            pass_promo: 'string',
+            desc_promo: 'string',
+            discount_promo: 'string',
+            discount_deriod_promo: 'string',
+        },
+        display_promo: false,
+        display_reviews: false,
+        remaining_goods: 1,
+        display_remaining_goods: false,
         };
 
     const dispatch = useAppDispatch();
@@ -51,19 +86,19 @@ const Product = () => {
 
     return (
         <main className={style.main}>
-            <BreadCrumbs header='Каталог' product={product.name} />
+            <BreadCrumbs header='Каталог' product={product.name_product} />
             <section className={style.productContainer}>
-                <img src={product.img || noImg} alt={product.name} />
+                <img src={/*product.img ||*/ noImg} alt={product.name_product} />
                 <section className={style.productInfo}>
-                    <h1>{product.name}</h1>
+                    <h1>{product.name_product}</h1>
                     <h2>&#8376; {product.price}</h2>
                     <article>
-                        {product.details} 
+                        {product.desc_product} 
                     </article>
                     {
-                        product.colors.length > 0 
+                        product.all_colors_products.length > 0 
                         ? <ColorSelection 
-                            colors={product.colors} 
+                            colors={product.all_colors_products} 
                             color={color} 
                             setColor={setColor} />
                         : null

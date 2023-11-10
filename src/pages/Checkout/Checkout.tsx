@@ -50,7 +50,7 @@ const Checkout = () => {
             <div className={style.container}>
 
                 <section>
-                    Checkout from
+                    Здесть должна быть форма с выбором доставки либо самовывоза, если доставка должны открываться поля типа адрес, телефон, способ оплаты и т.д.
                 </section>
 
                 <section className={style.cart}>
