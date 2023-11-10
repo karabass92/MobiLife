@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { shopAPI } from '../../api/api';
-import { IProduct } from '../../interfaces/interfaces';
+import { IShop } from '../../interfaces/interfaces';
 
 
-const initialState: Array<IProduct> = [];
+const initialState: IShop = {
+    count: 1,
+    next: null,
+    previous: null,
+    results: []
+};
 
 
-export const getAllProducts = () => async (dispatch: Function) => {
-    const data = await shopAPI.getAllProducts()
+export const getAllProducts = (limit?: number, offset?: number) => async (dispatch: Function) => {
+    const data = await shopAPI.getAllProducts(limit, offset)
     dispatch(setProducts(data));
 };
 
@@ -17,7 +22,7 @@ const shopSlice = createSlice({
     name: 'shop',
     initialState: initialState,
     reducers: {
-        setProducts: (state, action: PayloadAction<IProduct[]>) => {
+        setProducts: (state, action: PayloadAction<IShop>) => {
             return action.payload;
         }
     }
@@ -25,7 +30,10 @@ const shopSlice = createSlice({
 
 
 export const { setProducts } = shopSlice.actions;
-export const selectShop = (state: RootState) => state.shop;
+export const selectProducts = (state: RootState) => state.shop.results;
+export const selectTotalProductsCount = (state: RootState) => state.shop.count;
+export const seletNextPage = (state: RootState) => state.shop.next;
+export const selectPreviousPage = (state: RootState) => state.shop.previous;
 
 
 export default shopSlice.reducer;

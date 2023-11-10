@@ -1,0 +1,1 @@
+export const productPerPage: number = 4;

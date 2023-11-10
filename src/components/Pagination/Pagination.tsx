@@ -1,3 +1,4 @@
+import { productPerPage } from '../../constants/pagination';
 import styles from './Pagination.module.scss';
 
 
@@ -22,6 +23,12 @@ const Pagination = ({
 
     return (
         <section className={styles.main}>
+        <button 
+            className={styles.paginationButton} 
+            onClick={ () => setPage(--page)}
+            disabled={page === 1} >
+            {'<'}
+        </button> 
         {pages.map((p) => {
             return (
                 <button 
@@ -32,6 +39,12 @@ const Pagination = ({
                 </button>
             )
         })}
+        <button 
+            className={styles.paginationButton} 
+            onClick={ () => setPage(++page)}
+            disabled={page === pagesCount} >
+            {'>'}
+        </button> 
     </section>
     );
 };

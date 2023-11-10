@@ -12,11 +12,12 @@ const instance = axios.create({
 
 
 export const shopAPI = {
-    async getAllProducts() {
+    async getAllProducts(limit?: number, offset?: number) {
         try {
-            return await instance
-                .get(`${productURL}`)
+            const data = await instance
+                .get(`${productURL}${limit ? `?limit=${limit}` : ''}${offset ? `&offset=${offset}` : ''}`)
                 .then(response => response.data);
+            return data;
         } catch (e) {
             console.log(e);
         }

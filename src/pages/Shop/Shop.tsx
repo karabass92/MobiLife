@@ -1,6 +1,19 @@
-import { useEffect, useState } from 'react';
-import { getAllProducts, selectShop } from '../../store/slices/shopSlice';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { 
+    useEffect, 
+    useState 
+} from 'react';
+import { 
+    getAllProducts, 
+    selectProducts ,
+    selectTotalProductsCount,
+    seletNextPage,
+    selectPreviousPage
+} from '../../store/slices/shopSlice';
+import { 
+    useAppDispatch, 
+    useAppSelector 
+} from '../../store/hooks';
+import { productPerPage } from '../../constants/pagination';
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import ProductFilter from "../../components/ProductFilter/ProductFilter";
 import ProductCard from "../../components/ProductCard/ProductCard";
@@ -12,22 +25,18 @@ import style from './Shop.module.scss';
 const Shop = () => {
 
     const dispatch = useAppDispatch();
-    const products = useAppSelector(selectShop);
-
-    useEffect( ()=> {
-        dispatch(getAllProducts())
-        console.log(products)
-    }, [dispatch]);
-
+    const products = useAppSelector(selectProducts);
+    const totalProductsCount = useAppSelector(selectTotalProductsCount);
+    const nextPage = useAppSelector(seletNextPage);
+    const previousPage = useAppSelector(selectPreviousPage);
+    const pagesCount = Math.ceil(totalProductsCount/productPerPage)
     const [page, setPage] = useState<number>(1)
 
-    const productsToShow = 
-        products.map(el => <ProductCard 
-            key={el.id} 
-            id={el.id} 
-            name={el.name_product} 
-            price={el.price}
-            img={el.list_url_to_image} /> );
+    useEffect( ()=> {
+        dispatch(getAllProducts(productPerPage, (page - 1)*productPerPage))
+    }, [dispatch, page]);
+
+    if(!products) return <h1>Loading</h1>
 
     return (
         <main className={style.main}>
@@ -35,11 +44,18 @@ const Shop = () => {
             <ProductFilter />
             <ProductsToShowCount />
             <section className={style.productsContainer}>
-                {productsToShow}
+            {
+                products.map(el => <ProductCard 
+                    key={el.id} 
+                    id={el.id} 
+                    name={el.name_product} 
+                    price={el.price}
+                    img={el.list_url_to_image} />)
+            }
             </section>
             <ProductsToShowCount />
             <Pagination
-                pagesCount={5}
+                pagesCount={pagesCount}
                 page={page}
                 setPage={setPage} />
         </main>

@@ -49,3 +49,10 @@ export interface IProduct {
     count?: number,
     selected_color?: string
 }
+
+export interface IShop {
+    count: number,
+    next: string | null,
+    previous: string | null,
+    results: Array<IProduct>
+}
