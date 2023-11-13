@@ -1,21 +1,17 @@
-import { count } from 'console';
-import { productPerPage } from '../../constants/pagination';
+import { useAppSelector } from '../../store/hooks';
+import { selectProducts, selectTotalProductsCount } from '../../store/slices/shopSlice';
 import style from './ProductsToShowCount.module.scss';
 
 
-type Props = {
-    totalCount: number,
-    count: number
-};
+const ProductsToShowCount = () => {
 
+    const totalProductsCount = useAppSelector(selectTotalProductsCount);
+    const products = useAppSelector(selectProducts);
+    const productsOnPage = products.length;
 
-const ProductsToShowCount = ({
-    totalCount,
-    count
-}: Props) => {
     return (
         <section className={style.main}>
-            Показано: {count} из {totalCount} товаров
+            Показано: {productsOnPage} из {totalProductsCount} товаров
         </section>
     );
 };
