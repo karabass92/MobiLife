@@ -13,6 +13,17 @@ const instance = axios.create({
 
 
 export const shopAPI = {
+
+    async getOneProduct(productId: string | void) { 
+        try {
+            return await instance
+                .get(`${productURL}${productId}`)
+                .then(response => response.data)
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
     async getAllProducts(limit?: number, offset?: number) {
         try {
             const data = await instance
@@ -24,17 +35,16 @@ export const shopAPI = {
         }
     },
 
-    getProductsByCategory() {  },
-
-    getProductsByTag() {  },
-
-    async getOneProduct(productId: string | void) { 
+    async getProductsByCategory(categoryId: number) { 
         try {
-            return await instance
-                .get(`${productURL}${productId}`)
-                .then(response => response.data)
+            const data = await instance
+                .get(`${categoryURL}${categoryId}/${productURL}`)
+                .then(response => response.data);
+            return data;
         } catch (e) {
             console.log(e);
         }
-    }
+     },
+
+    getProductsByTag() {  },
 }

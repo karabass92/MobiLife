@@ -1,5 +1,3 @@
-import { useAppSelector } from "../../store/hooks";
-import { selectCart } from "../../store/slices/cartSlice";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import DeliveryBanner from "../../components/DeliveryBanner/DeliveryBanner";
 import ProductsInCartTable from "../../components/ProductsInCartTable/ProductsInCartTable";
@@ -7,10 +5,6 @@ import style from './Cart.module.scss';
 
 
 const Cart = () => {
-
-    const data = useAppSelector(selectCart);
-    console.log(data)
-
     return (
         <main className={style.main}>
             <BreadCrumbs 
@@ -19,7 +13,7 @@ const Cart = () => {
                 text="С условиями доставки Вы можете ознакомиться по данной ссылке!" />
             <ProductsInCartTable />
         </main>
-    )
+    );
 };
 
 

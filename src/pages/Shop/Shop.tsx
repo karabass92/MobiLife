@@ -12,12 +12,9 @@ import ProductsTable from '../../components/ProductsTable/ProductsTable';
 
 const Shop = () => {
 
-
-
     const totalProductsCount = useAppSelector(selectTotalProductsCount);
     const [page, setPage] = useState<number>(1);
-    const [category, setCategory] = useState<string>('');
-    console.log(category)
+    const [category, setCategory] = useState<number>(0);
 
     const pagesCount = Math.ceil(totalProductsCount/productPerPage);
     const offset = (page - 1)*productPerPage;

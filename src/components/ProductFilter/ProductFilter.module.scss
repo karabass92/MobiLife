@@ -1,14 +1,20 @@
 .main {
     padding-left: 30px;
+    position: relative;
 }
 
 .sortButtonContainer {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: min(92px, 8vw);
 }
 
 .sortButtonItem {
-    padding: 19px 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 222px;
+    padding: 19px 10px;
     font-weight: 500;
     font-size: 17px;
     line-height: 140%;
@@ -18,6 +24,9 @@
     margin-right: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
+    & span {
+        text-align: center;
+    }
 }
 
 .sortButtonItem:hover {
@@ -25,6 +34,7 @@
 }
 
 .sortButtonItemActive {
+    font-weight: 600;
     box-shadow: 0 5px 5px rgba(12, 87, 87, 0.685);
     background: rgb(25, 177, 178);
     color: #fff;
@@ -34,12 +44,13 @@
 .categoriesButton {
     display: none;
     width: 222px;
-    padding: 19px 65px;
+    padding: 19px 10px;
+    text-align: center;
     font-weight: 500;
     font-size: 17px;
     line-height: 140%;
     letter-spacing: 0.02em;
-    border: 1px solid black;
+    border: 1px solid rgb(18, 134, 134);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
@@ -74,8 +85,10 @@
     }
     .sortButtonContainer {
         position: absolute;
+        top: 70px;
         z-index: 2;
         display: flex;
+        gap: 5px;
         flex-direction: column;
         visibility: hidden;
         opacity: 0;
@@ -89,8 +102,8 @@
         background: #E5E5E5;
     }
     .sortButtonItemActive {
-        border: 1px solid black;
-        background: #000000;
+        border: 1px solid rgb(18, 134, 134);
+        background: rgb(25, 177, 178);
         color: #fff;
         transition: all 0.3s ease;
     }

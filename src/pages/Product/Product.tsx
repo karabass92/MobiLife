@@ -1,56 +1,48 @@
-import { useState, useEffect, ReactElement } from 'react';
+import { useState, ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getOneProduct, selectProduct } from '../../store/slices/productSlice';
-import { addProductToCart } from '../../store/slices/cartSlice';
-import { IProduct } from '../../interfaces/interfaces';
+import { productApi } from '../../store/api/productApi';
+import { mediaURL } from '../../constants/api';
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 import ProductCountToCart from '../../components/ProductCountToCart/ProductCountToCart';
 import ColorSelection from '../../components/ColorSelection/ColorSelection';
 import DefaultButton from '../../components/Button/DefaultButton/DefaultButton';
-import { mediaURL } from '../../constants/api';
 import noImg from '../../assets/img/Main/noImg.jpg';
 import style from './Product.module.scss';
 
 
 const Product = () => {
 
-    const dispatch = useAppDispatch();
-    const product = useAppSelector(selectProduct);
     let { productId } = useParams();
-
-    useEffect( () => {
-        dispatch(getOneProduct(productId))
-    }, [productId, dispatch]);
-
     const [productCount, setProductCount] = useState(1);
     const [img, setImg] = useState<string>('');
 
-    const onAddProductToCartClick = (product: IProduct): void => {
-        const productToOrder = {
-            ...product,
-            count: productCount
-        };
-        dispatch(addProductToCart(productToOrder));
-    };
+    const { 
+        data: product, 
+        isError: isErrorProduct, 
+        isLoading: isLoadingProduct
+    } = productApi.useGetProductQuery(productId);
 
-    if (!product) return <h1>loading</h1>;
+    const onAddProductToCartClick = () => {};
+
+    if (isLoadingProduct) return <h1>loading</h1>;
+    if (isErrorProduct) return <h1>error</h1>;
     
     return (
         <main className={style.main}>
-            <BreadCrumbs header='Каталог' product={product.name_product} />
+            <BreadCrumbs header='Каталог' product={product?.name_product} />
             <section className={style.productContainer}>
                 <div className={style.imageContainer}>
-                    <img src={ product.list_url_to_image.length > 0 
-                        ? `${mediaURL}${img ? img : product.list_url_to_image[0]}`
+                    <img src={ product.list_url_to_image?.length > 0 
+                        ? `${mediaURL}${img ? img : product?.list_url_to_image[0]}`
                         : noImg
-                    } alt={product.name_product}
+                    } alt={product?.name_product}
                     className={style.mainImg} />
-                    { product.list_url_to_image.length > 0
+                    { product.list_url_to_image?.length > 0
                         ?   <div className={style.imgSeletContainer}> 
                                 {
-                                    product.list_url_to_image.map((el: string): ReactElement => {
+                                    product?.list_url_to_image.map((el: string): ReactElement => {
                                         return <img 
+                                            key={el}
                                             src={`${mediaURL}${el}`} 
                                             alt={el}
                                             onClick={() => setImg(el)}/>
@@ -61,14 +53,14 @@ const Product = () => {
                     }
                 </div>
                 <section className={style.productInfo}>
-                    <h1>{product.name_product}</h1>
-                    <h2>&#8376; {product.price}</h2>
+                    <h1>{product?.name_product}</h1>
+                    <h2>&#8376; {product?.price}</h2>
                     <article>
-                        {product.desc_product} 
+                        {product?.desc_product} 
                     </article>
                     {
-                        product.color 
-                        ? <ColorSelection color={product.color} />
+                        product?.color 
+                        ? <ColorSelection color={product?.color} />
                         : null
                     }
                     <ProductCountToCart 
@@ -82,14 +74,14 @@ const Product = () => {
                             text='Вернуться в магазин' />     
                         <button 
                             className={style.addProductToCartButon}
-                            onClick={() => onAddProductToCartClick(product)} >
+                            onClick={() => onAddProductToCartClick()} >
                             Добавить в корзину
                         </button>
                     </div>
                 </section>
             </section>
         </main>
-    )
+    );
 };
 
 

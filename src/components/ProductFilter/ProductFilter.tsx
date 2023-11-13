@@ -1,11 +1,11 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import style from './ProductFilter.module.scss';
 import { categoriesApi } from '../../store/api/categoriesApi';
 
 
 type Props = {
-    category: string,
-    setCategory: (category: string) => void,
+    category: number,
+    setCategory: (category: number) => void,
     setPage: (pageNumber: number) => void
 }
 
@@ -34,26 +34,26 @@ const ProductFilter = ({
                 Категории
             </div>
             <div className={`${style.sortButtonContainer} ${!open || style.visible}`}>
-                <div className={`${style.sortButtonItem} ${category === '' && style.sortButtonItemActive}`}
+                <div className={`${style.sortButtonItem} ${category === 0 && style.sortButtonItemActive}`}
                     onClick={() => {
-                        setCategory('')
+                        setCategory(0)
                         setPage(1)
                         setOpen(false)
                     }}>
-                    Все
+                    <span>Все</span>
                 </div>
                     {
                         categories?.results.map(el => {
                             return (
                                 <div 
                                     key={el.id}
-                                    className={`${style.sortButtonItem} ${category === el.name_category && style.sortButtonItemActive}`}
+                                    className={`${style.sortButtonItem} ${category === el.id && style.sortButtonItemActive}`}
                                     onClick={() => {
-                                        setCategory(el.name_category)
+                                        setCategory(el.id)
                                         setPage(1)
                                         setOpen(false)
                                     }}>
-                                    {el.name_category}
+                                    <span>{el.name_category}</span>
                                 </div>
                             )
                         })
