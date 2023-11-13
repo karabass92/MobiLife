@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import cartSlice from "./slices/cartSlice";
 import shopSlice from "./slices/shopSlice";
 import productSlice from "./slices/productSlice";
+import { categoriesApi } from "./api/categoriesApi";
 
 
 export const store = configureStore({
@@ -9,7 +10,10 @@ export const store = configureStore({
         cart: cartSlice,
         shop: shopSlice,
         product: productSlice,
+        [categoriesApi.reducerPath]: categoriesApi.reducer
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(categoriesApi.middleware),
     devTools: true
 });
 

@@ -12,8 +12,12 @@ import ProductsTable from '../../components/ProductsTable/ProductsTable';
 
 const Shop = () => {
 
+
+
     const totalProductsCount = useAppSelector(selectTotalProductsCount);
     const [page, setPage] = useState<number>(1);
+    const [category, setCategory] = useState<string>('');
+    console.log(category)
 
     const pagesCount = Math.ceil(totalProductsCount/productPerPage);
     const offset = (page - 1)*productPerPage;
@@ -21,7 +25,10 @@ const Shop = () => {
     return (
         <main className={style.main}>
             <BreadCrumbs header='Каталог' />
-            <ProductFilter />
+            <ProductFilter
+                setPage={setPage} 
+                category={category} 
+                setCategory={setCategory} />
             <ProductsToShowCount />
             <ProductsTable page={page} offset={offset} />
             <ProductsToShowCount />

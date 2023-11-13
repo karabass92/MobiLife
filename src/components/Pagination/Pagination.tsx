@@ -5,7 +5,7 @@ import styles from './Pagination.module.scss';
 type Props = {
     pagesCount:number,
     page: number,
-    setPage: Function
+    setPage: (pageNumber: number) => void
 }
 
 

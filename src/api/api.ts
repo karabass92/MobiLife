@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { 
     baseURL,
-    productURL
+    productURL,
+    categoryURL
 } from '../constants/api';
 
 
