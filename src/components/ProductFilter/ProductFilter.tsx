@@ -4,16 +4,16 @@ import { categoriesApi } from '../../store/api/categoriesApi';
 
 
 type Props = {
-    category: number,
-    setCategory: (category: number) => void,
+    categoryId: number,
+    setCategoryId: (category: number) => void,
     setPage: (pageNumber: number) => void
 }
 
 
 const ProductFilter = ({
-    category,
+    categoryId,
     setPage,
-    setCategory
+    setCategoryId
 }: Props) => {
 
     const {
@@ -34,9 +34,9 @@ const ProductFilter = ({
                 Категории
             </div>
             <div className={`${style.sortButtonContainer} ${!open || style.visible}`}>
-                <div className={`${style.sortButtonItem} ${category === 0 && style.sortButtonItemActive}`}
+                <div className={`${style.sortButtonItem} ${categoryId === 0 && style.sortButtonItemActive}`}
                     onClick={() => {
-                        setCategory(0)
+                        setCategoryId(0)
                         setPage(1)
                         setOpen(false)
                     }}>
@@ -47,9 +47,9 @@ const ProductFilter = ({
                             return (
                                 <div 
                                     key={el.id}
-                                    className={`${style.sortButtonItem} ${category === el.id && style.sortButtonItemActive}`}
+                                    className={`${style.sortButtonItem} ${categoryId === el.id && style.sortButtonItemActive}`}
                                     onClick={() => {
-                                        setCategory(el.id)
+                                        setCategoryId(el.id)
                                         setPage(1)
                                         setOpen(false)
                                     }}>

@@ -18,11 +18,18 @@ export const getAllProducts = (limit?: number, offset?: number) => async (dispat
 };
 
 
+export const getProductsByCategory = (categoryId: number, limit?: number, offset?: number) => async(dispatch: Function) => {
+    const data = await shopAPI.getProductsByCategory(categoryId, limit, offset)
+    dispatch(setProducts(data));
+};
+
+
 const shopSlice = createSlice({
     name: 'shop',
     initialState: initialState,
     reducers: {
         setProducts: (state, action: PayloadAction<IShop>) => {
+            console.log(action.payload)
             return action.payload;
         }
     }

@@ -4,7 +4,8 @@ import { useAppSelector } from '../../store/hooks';
 import { productPerPage } from '../../constants/pagination';
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import ProductFilter from "../../components/ProductFilter/ProductFilter";
-import Pagination from "../../components/Pagination/Pagination";
+import { CustomPagination } from '../../components/Pagination/Pagination';
+import { MUIPagination } from '../../components/Pagination/Pagination';
 import ProductsToShowCount from "../../components/ProductsToShowCount/ProductsToShowCount";
 import style from './Shop.module.scss';
 import ProductsTable from '../../components/ProductsTable/ProductsTable';
@@ -14,22 +15,33 @@ const Shop = () => {
 
     const totalProductsCount = useAppSelector(selectTotalProductsCount);
     const [page, setPage] = useState<number>(1);
-    const [category, setCategory] = useState<number>(0);
+    const [categoryId, setCategoryId] = useState<number>(0);
 
     const pagesCount = Math.ceil(totalProductsCount/productPerPage);
     const offset = (page - 1)*productPerPage;
 
     return (
         <main className={style.main}>
-            <BreadCrumbs header='Каталог' />
+            <BreadCrumbs 
+                header='Каталог' />
             <ProductFilter
                 setPage={setPage} 
-                category={category} 
-                setCategory={setCategory} />
+                categoryId={categoryId} 
+                setCategoryId={setCategoryId} />
             <ProductsToShowCount />
-            <ProductsTable page={page} offset={offset} />
+            <ProductsTable 
+                page={page} 
+                offset={offset} 
+                categoryId={categoryId} />
             <ProductsToShowCount />
-            <Pagination pagesCount={pagesCount} page={page} setPage={setPage} />
+            <CustomPagination 
+                pagesCount={pagesCount} 
+                page={page} 
+                setPage={setPage} />
+            <MUIPagination 
+                pagesCount={pagesCount} 
+                page={page} 
+                setPage={setPage} />
         </main>
     );
 };

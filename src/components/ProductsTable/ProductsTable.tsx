@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { selectProducts } from '../../store/slices/shopSlice';
-import { getAllProducts } from '../../store/slices/shopSlice';
+import { getAllProducts, getProductsByCategory } from '../../store/slices/shopSlice';
 import { productPerPage } from '../../constants/pagination';
 import ProductCard from '../ProductCard/ProductCard';
 import style from './ProductsTable.module.scss';
@@ -10,20 +10,24 @@ import style from './ProductsTable.module.scss';
 type Props = {
     page: number,
     offset: number,
+    categoryId: number
 };
 
 
 const ProductsTable = ({
     page,
-    offset
+    offset,
+    categoryId
 }: Props) => {
 
     const dispatch = useAppDispatch();
     const products = useAppSelector(selectProducts);
 
     useEffect( ()=> {
-        dispatch(getAllProducts(productPerPage, offset));
-    }, [dispatch, page, offset]);
+        categoryId === 0
+        ? dispatch(getAllProducts(productPerPage, offset))
+        : dispatch(getProductsByCategory(categoryId, productPerPage, offset))
+    }, [page, offset, categoryId, dispatch]);
 
     return (
         <section className={style.productsContainer}>

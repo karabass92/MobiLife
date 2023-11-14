@@ -1,4 +1,4 @@
-import { productPerPage } from '../../constants/pagination';
+import { Pagination } from '@mui/material';
 import styles from './Pagination.module.scss';
 
 
@@ -9,7 +9,7 @@ type Props = {
 }
 
 
-const Pagination = ({
+export const CustomPagination = ({
     pagesCount,
     page,
     setPage
@@ -50,4 +50,18 @@ const Pagination = ({
 };
 
 
-export default Pagination;
+export const MUIPagination = ({pagesCount, page, setPage}: Props) => {
+    return (
+        <section className={styles.main}>
+            <Pagination 
+                count={pagesCount}
+                page={page}
+                defaultPage={page}
+                siblingCount={1}
+                size={'large'}
+                boundaryCount={1}
+                shape='rounded'
+                onChange={(_, page) => {setPage(page)}} />
+        </section>
+    );
+};
