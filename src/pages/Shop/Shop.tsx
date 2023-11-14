@@ -4,8 +4,7 @@ import { useAppSelector } from '../../store/hooks';
 import { productPerPage } from '../../constants/pagination';
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import ProductFilter from "../../components/ProductFilter/ProductFilter";
-import { CustomPagination } from '../../components/Pagination/Pagination';
-import { MUIPagination } from '../../components/Pagination/Pagination';
+import MUIPagination from '../../components/Pagination/MUIPagination';
 import ProductsToShowCount from "../../components/ProductsToShowCount/ProductsToShowCount";
 import style from './Shop.module.scss';
 import ProductsTable from '../../components/ProductsTable/ProductsTable';
@@ -34,10 +33,6 @@ const Shop = () => {
                 offset={offset} 
                 categoryId={categoryId} />
             <ProductsToShowCount />
-            <CustomPagination 
-                pagesCount={pagesCount} 
-                page={page} 
-                setPage={setPage} />
             <MUIPagination 
                 pagesCount={pagesCount} 
                 page={page} 

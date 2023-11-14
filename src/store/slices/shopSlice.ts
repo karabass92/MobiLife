@@ -29,7 +29,6 @@ const shopSlice = createSlice({
     initialState: initialState,
     reducers: {
         setProducts: (state, action: PayloadAction<IShop>) => {
-            console.log(action.payload)
             return action.payload;
         }
     }
