@@ -8,6 +8,7 @@ type Props = {
     id: number,
     name: string,
     price: string,
+    displayPrice: boolean,
     img: string[]
 };
 
@@ -16,7 +17,9 @@ const ProductCard = ({
     img, 
     name, 
     price,
-    id}: Props) => {
+    id,
+    displayPrice
+}: Props) => {
 
     return (
         <section className={style.main}>
@@ -26,7 +29,9 @@ const ProductCard = ({
                     : noImg
                 } alt="" />
             <h3>{name}</h3>
-            <p>&#8376; {price}</p>
+            {
+                displayPrice && <p>&#8376; {price}</p>
+            }
             <LinkButton text='Подробнее' link={`../product/${id}`} width={127} height={41} />
         </section>
     );

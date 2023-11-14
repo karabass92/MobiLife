@@ -26,6 +26,8 @@ const Product = () => {
 
     if (isLoadingProduct) return <h1>loading</h1>;
     if (isErrorProduct) return <h1>error</h1>;
+
+    console.log(product)
     
     return (
         <main className={style.main}>
@@ -54,7 +56,9 @@ const Product = () => {
                 </div>
                 <section className={style.productInfo}>
                     <h1>{product?.name_product}</h1>
-                    <h2>&#8376; {product?.price}</h2>
+                    {
+                        product.display_price && <h2>&#8376; {product?.price_with_discount_or_PROMO}</h2>
+                    }
                     <article>
                         {product?.desc_product} 
                     </article>

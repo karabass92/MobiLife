@@ -36,8 +36,9 @@ const ProductsTable = ({
                     key={el.id} 
                     id={el.id} 
                     name={el.name_product} 
-                    price={el.price}
-                    img={el.list_url_to_image} />)
+                    price={el.price_with_discount_or_PROMO}
+                    img={el.list_url_to_image}
+                    displayPrice={el.display_price} />)
             }
         </section>
     );
