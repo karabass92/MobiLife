@@ -2,7 +2,9 @@ import axios from 'axios';
 import { 
     baseURL,
     productURL,
-    categoryURL
+    categoryURL,
+    cartURL,
+    cartVisitorURL
 } from '../constants/api';
 
 
@@ -34,7 +36,53 @@ export const shopAPI = {
         } catch (e) {
             console.log(e);
         }
-     },
+    },
+};
 
-    getProductsByTag() {  },
+
+export const cartAPI = {
+
+    async getAllProducts() {
+        try {
+            const data = await instance
+                .get(`${cartURL}${cartVisitorURL}`)
+                .then(response => response.data)
+            return data;
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
+    async addProductToCart(sessionId: string, count: number, productId: number) {
+        try {
+            const data = {
+                user_session: sessionId,
+                quantity: count,
+                products: productId
+            };
+            return await instance.post(cartURL, data)
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
+    async deleteProductFromCart(itemId: number) {
+        try {
+            return await instance.delete(cartURL)
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
+    async changeProductCount(itemId: number, count: number) {
+        try {
+            const data = {
+                id: itemId,
+                quantity: count
+            }
+            return await instance.put(cartURL, data)
+        } catch (e) {
+            console.log(e);
+        }
+    },
 }
