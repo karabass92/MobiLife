@@ -6,8 +6,11 @@ import { IProduct } from '../../interfaces/interfaces';
 export const productApi = createApi({
 
     reducerPath: 'productApi',
+    
 
-    baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
+    baseQuery: fetchBaseQuery({ 
+        baseUrl: baseURL 
+    }),
 
     endpoints: (build) => ({
         getProduct: build.query<IProduct | any, string | void>({

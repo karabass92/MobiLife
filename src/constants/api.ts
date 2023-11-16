@@ -8,4 +8,4 @@ export const categoryURL: string = 'category/';
 
 export const cartURL: string = 'basket/';
 
-export const cartVisitorURL: string = 'visitor/'
+export const cartVisitorURL: string = 'basket/visitor/'

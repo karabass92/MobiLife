@@ -56,3 +56,14 @@ export interface IShop {
     previous: string | null,
     results: Array<IProduct>
 }
+
+export interface ICartItem {
+    id: number,
+    user_session: string,
+    quantity: number,
+    add_datetime: string,
+    products: number,
+    price_per_prod: number,
+    total_price_per_position: number,
+    total_price_of_customer_cart: number
+}

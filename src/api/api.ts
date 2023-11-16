@@ -20,7 +20,10 @@ export const shopAPI = {
         try {
             const data = await instance
                 .get(`${productURL}${limit ? `?limit=${limit}` : ''}${offset ? `&offset=${offset}` : ''}`)
-                .then(response => response.data);
+                .then(response => {
+                    console.log(response)
+                    return response.data
+                });
             return data;
         } catch (e) {
             console.log(e);

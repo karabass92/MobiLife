@@ -1,6 +1,7 @@
 import { useState, ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import { productApi } from '../../store/api/productApi';
+import { cartApi } from '../../store/api/cartApi';
 import { mediaURL } from '../../constants/api';
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 import ProductCountToCart from '../../components/ProductCountToCart/ProductCountToCart';
@@ -22,12 +23,25 @@ const Product = () => {
         isLoading: isLoadingProduct
     } = productApi.useGetProductQuery(productId);
 
-    const onAddProductToCartClick = () => {};
+    const [
+        addProduct,
+        {
+            isError: IsErrorAddProduct,
+            isLoading: isLoadingAddProduct
+        }
+    ] = cartApi.useAddProductToCartMutation();
+
+    const onAddProductToCartClick = async () => {
+        const body = {
+            user_session: 'PIZDA',
+            quantity: productCount,
+            products: Number(productId)
+        };
+        await addProduct(body)
+    };
 
     if (isLoadingProduct) return <h1>loading</h1>;
     if (isErrorProduct) return <h1>error</h1>;
-
-    console.log(product)
     
     return (
         <main className={style.main}>
@@ -78,7 +92,7 @@ const Product = () => {
                             text='Вернуться в магазин' />     
                         <button 
                             className={style.addProductToCartButon}
-                            onClick={() => onAddProductToCartClick()} >
+                            onClick={onAddProductToCartClick} >
                             Добавить в корзину
                         </button>
                     </div>
