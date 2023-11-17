@@ -1,4 +1,6 @@
 import { useState, ReactElement } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { addProduct, selectCart } from '../../store/slices/cartSlice';
 import { useParams } from 'react-router-dom';
 import { productApi } from '../../store/api/productApi';
 import { cartApi } from '../../store/api/cartApi';
@@ -14,10 +16,12 @@ import LinkButton from '../../components/Button/LinkButton/LinkButton';
 
 const Product = () => {
 
+    const dispatch = useAppDispatch();
     let { productId } = useParams();
     const [productCount, setProductCount] = useState<number>(1);
     const [productAddedToCart, setProductAddedToCart] = useState<boolean>(false);
     const [img, setImg] = useState<string>('');
+    const cart = useAppSelector(selectCart);
 
     const { 
         data: product, 
@@ -26,7 +30,7 @@ const Product = () => {
     } = productApi.useGetProductQuery(productId);
 
     const [
-        addProduct,
+        addProductToCart,
         {
             isError: IsErrorAddProduct,
             isLoading: isLoadingAddProduct
@@ -35,13 +39,15 @@ const Product = () => {
 
     const onAddProductToCartClick = async () => {
         const body = {
-            user_session: 'vcsrfu3kda94p0q602h61v4sckvyeo8z',
+            user_session: `${localStorage.getItem('id')}`,
             quantity: productCount,
             products: Number(productId)
         };
-        await addProduct(body);
+        await addProductToCart(body);
         setProductAddedToCart(true);
-        //!IsErrorAddProduct && !isLoadingAddProduct %% addProtuct to slice
+        if(!IsErrorAddProduct && !isLoadingAddProduct) {
+            dispatch(addProduct(Number(productId)))
+        }
     };
 
     if (isLoadingProduct) return <h1>loading</h1>;
@@ -91,24 +97,19 @@ const Product = () => {
                             height={60}
                             link='/shop'
                             text='Вернуться в магазин' />
-                        { // переписать есть ли продукт в списку cartSlice
-                        productAddedToCart
-                            ? IsErrorAddProduct
-                                ?   <div className={style.addProductToCartButon}>
-                                        error
-                                    </div>
-                                :   <LinkButton
-                                        width={200}
-                                        height={60}
-                                        link='/cart'
-                                        text='Перейти к корзине' />
-                            : <button 
-                                className={style.addProductToCartButon}
-                                onClick={onAddProductToCartClick}
-                                disabled={isLoadingAddProduct} >
-                                {isLoadingAddProduct ? 'секунду...' : 'Добавить в корзину'}
-                            </button>
-                        }     
+                        { cart.includes(product.id)
+                            ?   <LinkButton
+                                    width={200}
+                                    height={60}
+                                    link='/cart'
+                                    text='Перейти к корзине' />
+                            :   <button 
+                                    className={style.addProductToCartButon}
+                                    onClick={onAddProductToCartClick}
+                                    disabled={isLoadingAddProduct} >
+                                    {isLoadingAddProduct ? 'Cекунду...' : 'Добавить в корзину'}
+                                </button>
+                        }
                     </div>
                 </section>
             </section>

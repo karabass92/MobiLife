@@ -69,6 +69,6 @@ export interface ICartItem {
 }
 
 export interface ICart {
-    sessionid: string,
+    sessionid: string | null,
     products: Array<ICartItem>
 }

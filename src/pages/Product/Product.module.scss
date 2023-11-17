@@ -54,6 +54,9 @@
 .buttonBlock {
     display: flex;
     gap: 20px;
+    & a {
+        margin: 0;;
+    }
 }
 
 .addProductToCartButon {

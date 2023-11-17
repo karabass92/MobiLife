@@ -3,11 +3,13 @@ import shopSlice from "./slices/shopSlice";
 import { categoriesApi } from "./api/categoriesApi";
 import { productApi } from "./api/productApi";
 import { cartApi } from "./api/cartApi";
+import cartSlice from "./slices/cartSlice";
 
 
 export const store = configureStore({
     reducer: {
         shop: shopSlice,
+        cart: cartSlice,
         [productApi.reducerPath]: productApi.reducer,
         [categoriesApi.reducerPath]: categoriesApi.reducer,
         [cartApi.reducerPath]: cartApi.reducer

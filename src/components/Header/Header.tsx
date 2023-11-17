@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
-import Cart from '../Cart/Cart';
+import HeaderCart from '../HeaderCart/HeaderCart';
 import Search from '../Search/Search';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import style from './Header.module.scss';
@@ -20,7 +20,7 @@ const Header = () => {
                 </section>
                 <section className={style.rightSection}>
                     <Search />
-                    <Cart />
+                    <HeaderCart />
                     <BurgerMenu 
                         burgerIsOpen={burgerIsOpen} 
                         setBurgerIsOpen={setBurgerIsOpen} />
