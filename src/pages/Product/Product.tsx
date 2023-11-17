@@ -9,12 +9,14 @@ import ColorSelection from '../../components/ColorSelection/ColorSelection';
 import DefaultButton from '../../components/Button/DefaultButton/DefaultButton';
 import noImg from '../../assets/img/Main/noImg.jpg';
 import style from './Product.module.scss';
+import LinkButton from '../../components/Button/LinkButton/LinkButton';
 
 
 const Product = () => {
 
     let { productId } = useParams();
-    const [productCount, setProductCount] = useState(1);
+    const [productCount, setProductCount] = useState<number>(1);
+    const [productAddedToCart, setProductAddedToCart] = useState<boolean>(false);
     const [img, setImg] = useState<string>('');
 
     const { 
@@ -33,11 +35,13 @@ const Product = () => {
 
     const onAddProductToCartClick = async () => {
         const body = {
-            user_session: 'PIZDA',
+            user_session: 'vcsrfu3kda94p0q602h61v4sckvyeo8z',
             quantity: productCount,
             products: Number(productId)
         };
-        await addProduct(body)
+        await addProduct(body);
+        setProductAddedToCart(true);
+        //!IsErrorAddProduct && !isLoadingAddProduct %% addProtuct to slice
     };
 
     if (isLoadingProduct) return <h1>loading</h1>;
@@ -70,14 +74,11 @@ const Product = () => {
                 </div>
                 <section className={style.productInfo}>
                     <h1>{product?.name_product}</h1>
-                    {
-                        product.display_price && <h2>&#8376; {product?.price_with_discount_or_PROMO}</h2>
+                    { product.display_price && 
+                        <h2>&#8376; {product?.price_with_discount_or_PROMO}</h2>
                     }
-                    <article>
-                        {product?.desc_product} 
-                    </article>
-                    {
-                        product?.color 
+                    <article>{product?.desc_product}</article>
+                    { product?.color 
                         ? <ColorSelection color={product?.color} />
                         : null
                     }
@@ -89,12 +90,25 @@ const Product = () => {
                             width={200}
                             height={60}
                             link='/shop'
-                            text='Вернуться в магазин' />     
-                        <button 
-                            className={style.addProductToCartButon}
-                            onClick={onAddProductToCartClick} >
-                            Добавить в корзину
-                        </button>
+                            text='Вернуться в магазин' />
+                        { // переписать есть ли продукт в списку cartSlice
+                        productAddedToCart
+                            ? IsErrorAddProduct
+                                ?   <div className={style.addProductToCartButon}>
+                                        error
+                                    </div>
+                                :   <LinkButton
+                                        width={200}
+                                        height={60}
+                                        link='/cart'
+                                        text='Перейти к корзине' />
+                            : <button 
+                                className={style.addProductToCartButon}
+                                onClick={onAddProductToCartClick}
+                                disabled={isLoadingAddProduct} >
+                                {isLoadingAddProduct ? 'секунду...' : 'Добавить в корзину'}
+                            </button>
+                        }     
                     </div>
                 </section>
             </section>

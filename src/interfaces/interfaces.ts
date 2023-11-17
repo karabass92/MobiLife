@@ -67,3 +67,8 @@ export interface ICartItem {
     total_price_per_position: number,
     total_price_of_customer_cart: number
 }
+
+export interface ICart {
+    sessionid: string,
+    products: Array<ICartItem>
+}

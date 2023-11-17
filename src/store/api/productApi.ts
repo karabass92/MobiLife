@@ -6,8 +6,7 @@ import { IProduct } from '../../interfaces/interfaces';
 export const productApi = createApi({
 
     reducerPath: 'productApi',
-    
-
+    refetchOnReconnect: true,
     baseQuery: fetchBaseQuery({ 
         baseUrl: baseURL 
     }),

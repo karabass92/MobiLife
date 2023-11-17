@@ -14,11 +14,11 @@ interface ICategoryState {
 export const categoriesApi = createApi({
 
     reducerPath: 'categoriesApi',
-
+    refetchOnReconnect: true,
     baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
 
     endpoints: (build) => ({
-        getAllCategories: build.query<ICategoryState, any>({
+        getAllCategories: build.query<ICategoryState, string>({
             query: () => ({
                 url: categoryURL,
             })

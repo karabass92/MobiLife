@@ -1,13 +1,22 @@
-import { useAppSelector } from '../../store/hooks';
-import { selectCart } from '../../store/slices/cartSlice';
 import cart from '../../assets/img/Header/cart.svg';
 import { NavLink } from 'react-router-dom';
 import style from './Cart.module.scss';
+import { cartApi } from '../../store/api/cartApi';
 
 
 const Cart = () => {
 
-    const count = useAppSelector(selectCart).length;
+    const { 
+        data,
+        isError,
+        isLoading
+     } = cartApi.useGetProductsQuery('');
+
+    let count = 0;
+    if(!isError && !isLoading) count = data?.length
+
+    // setAllProducts
+    // setSessionid
 
     return (
 

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { baseURL, cartURL } from '../../constants/api';
+import { baseURL, cartURL, cartVisitorURL } from '../../constants/api';
+import { ICartItem } from '../../interfaces/interfaces';
 
 
 type AppToCartPayload = {
@@ -12,8 +13,11 @@ type AppToCartPayload = {
 export const cartApi = createApi({
     
     reducerPath: 'cartApi',
-
-    baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
+    refetchOnReconnect: true,
+    baseQuery: fetchBaseQuery({ 
+        baseUrl: baseURL, 
+        credentials: 'include' 
+    }),
 
     endpoints: (build) => ({
         addProductToCart: build.mutation<AppToCartPayload, AppToCartPayload>({
@@ -21,6 +25,14 @@ export const cartApi = createApi({
                 url: cartURL,
                 method: 'POST',
                 body: body
+            })
+        }),
+        getProducts: build.query({
+            query: () => ({
+                url: cartVisitorURL,
+                params: {
+                    id: 'sdfsd'
+                }
             })
         })
     })
