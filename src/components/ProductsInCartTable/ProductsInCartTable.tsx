@@ -2,59 +2,32 @@ import TableHeader from './TableHeader/TableHeader';
 import TableItem from './TableItem/TableItem';
 import TableFooter from './TableFooter/TableFooter';
 import style from './ProductsInCartTable.module.scss';
+import { cartApi } from '../../store/api/cartApi';
+import { ICartItem } from '../../interfaces/interfaces';
 
 
 const ProductsInCartTable = () => {
 
+    const { 
+        data,
+        isError,
+        isLoading
+    } = cartApi.useGetProductsQuery('');
 
-    const data: any[] = [
-        {
-            id: 1,
-            img: '',
-            info: {
-                name: 'блядский утюг',
-                color: 'silver',
-                params: 'здоровый и тяжелый пиздец'
-            },
-            price: 666,
-            count: 1
-        },
-        {
-            id: 2,
-            img: '',
-            info: {
-                name: 'iphone',
-                color: 'silver',
-                params: '128gb'
-            },
-            price: 700000,
-            count: 1
-        },
-        {
-            id: 3,
-            img: '',
-            info: {
-                name: 'iphone',
-                color: 'silver',
-                params: '128gb'
-            },
-            price: 700000,
-            count: 1
-        },
-    ];
+    if(isError || isLoading) return <>XYU</>
 
+console.log(data)
 
     return (
         <section className={style.main}>
             <TableHeader />
             {data.length > 0
-                ? data.map(el => {
+                ? data.map((el:ICartItem ) => {
                     return (
                         <TableItem
-                            key={el.name}
-                            info={el.info}
-                            price={el.price}
-                            count={el.count} />
+                            key={el.id}
+                            price={el.total_price_of_customer_cart}
+                            count={el.quantity} />
                     )
                 })
                 : <div className={style.empyCartMessage}>корзина пуста</div>

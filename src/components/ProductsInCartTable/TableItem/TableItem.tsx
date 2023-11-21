@@ -7,7 +7,7 @@ import noImg from '../../../assets/img/Main/noImg.jpg'
 
 type Props = {
     photo?: string,
-    info: {
+    info?: {
         name: string,
         color?: string,
         params?: string
@@ -31,15 +31,15 @@ const TableItem = ({
             <div className={style.productImage} >
                 {
                     photo
-                    ? <img src={photo} alt={info.name} />
+                    ? <img src={photo} alt={info?.name} />
                     : <img  src={noImg}  alt='no image' />
                 }
             </div>
             <div className={style.productInfo}>
                 {
-                    `${info.name}, 
-                    ${info.color ? `${info.color},` : null} 
-                    ${info.params ? `${info.params},` : null} `
+                    `${info?.name}, 
+                    ${info?.color ? `${info?.color},` : null} 
+                    ${info?.params ? `${info?.params},` : null} `
                 }
             </div>
             <div>

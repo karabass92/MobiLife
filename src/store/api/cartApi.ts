@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseURL, cartURL, cartVisitorURL } from '../../constants/api';
+import { ICartItem } from '../../interfaces/interfaces';
 
 
 type AddToCartPayload = {

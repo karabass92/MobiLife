@@ -1,10 +1,15 @@
+import { useAppSelector } from "../../store/hooks";
+import { selectCart } from "../../store/slices/cartSlice";
+
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import DeliveryBanner from "../../components/DeliveryBanner/DeliveryBanner";
 import ProductsInCartTable from "../../components/ProductsInCartTable/ProductsInCartTable";
 import style from './Cart.module.scss';
+import { cartApi } from "../../store/api/cartApi";
 
 
 const Cart = () => {
+
     return (
         <main className={style.main}>
             <BreadCrumbs 
