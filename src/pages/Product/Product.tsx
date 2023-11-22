@@ -1,6 +1,6 @@
 import { useState, ReactElement } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addProduct, selectCart } from '../../store/slices/cartSlice';
+import { useAppSelector } from '../../store/hooks';
+import { selectCart } from '../../store/slices/cartSlice';
 import { useParams } from 'react-router-dom';
 import { productApi } from '../../store/api/productApi';
 import { cartApi } from '../../store/api/cartApi';
@@ -16,10 +16,8 @@ import LinkButton from '../../components/Button/LinkButton/LinkButton';
 
 const Product = () => {
 
-    const dispatch = useAppDispatch();
     let { productId } = useParams();
     const [productCount, setProductCount] = useState<number>(1);
-    const [productAddedToCart, setProductAddedToCart] = useState<boolean>(false);
     const [img, setImg] = useState<string>('');
     const cart = useAppSelector(selectCart);
 
@@ -44,10 +42,6 @@ const Product = () => {
             products: Number(productId)
         };
         await addProductToCart(body);
-        setProductAddedToCart(true);
-        if(!IsErrorAddProduct && !isLoadingAddProduct) {
-            dispatch(addProduct(Number(productId)))
-        }
     };
 
     if (isLoadingProduct) return <h1>loading</h1>;

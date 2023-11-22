@@ -1,3 +1,4 @@
+import { cartApi } from '../../../store/api/cartApi';
 import ItemCounter from './ItemCounter/ItemCounter';
 import { mediaURL } from '../../../constants/api';
 import style from './TableItem.module.scss';
@@ -12,7 +13,8 @@ type Props = {
     price: number,
     totalPrice: number,
     count: number,
-    id: number
+    productId: number,
+    cartItemId: number
 };
 
 
@@ -22,8 +24,11 @@ const TableItem = ({
     price,
     totalPrice,
     count,
-    id
+    productId,
+    cartItemId
 }: Props) => {
+
+    const [removeProduct, {isError, isLoading}] = cartApi.useRemoveProductFromCartMutation();
 
     return (
         <div className={style.tableItem}>
@@ -42,13 +47,16 @@ const TableItem = ({
             <div>
                 {price}
             </div>
-            <ItemCounter productId={id} count={count} />
+            <ItemCounter productId={productId} count={count} />
             <div>
                 {totalPrice}
             </div>
-            <div className={style.imgContainer}>
+            <button 
+                className={style.imgContainer} 
+                disabled={isLoading}
+                onClick={() => removeProduct(cartItemId)}>
                 <img src={cross} alt="delete" />
-            </div>
+            </button>
         </div>
     );
 };
