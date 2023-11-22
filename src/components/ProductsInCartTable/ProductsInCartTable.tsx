@@ -14,9 +14,12 @@ const ProductsInCartTable = () => {
         isLoading
     } = cartApi.useGetProductsQuery('');
 
-    if(isError || isLoading) return <>XYU</>
+    if(isError) return <>Error</>
+    if(isLoading) return <>Loadnig</>
 
-console.log(data)
+    const totalCount = data
+        .map((el:ICartItem) => el.quantity)
+        .reduce((el:number, count:number) => el + count);
 
     return (
         <section className={style.main}>
@@ -26,13 +29,19 @@ console.log(data)
                     return (
                         <TableItem
                             key={el.id}
-                            price={el.total_price_of_customer_cart}
+                            id={el.products}
+                            name={el.name_product}
+                            photo={el.product_images}
+                            price={el.price_per_prod}
+                            totalPrice={el.total_price_per_position}
                             count={el.quantity} />
                     )
                 })
                 : <div className={style.empyCartMessage}>корзина пуста</div>
             }
-            <TableFooter totalPrice={1000} productCount={2} />
+            <TableFooter 
+                totalPrice={data[0].total_price_of_customer_cart || 0} 
+                productCount={totalCount || null} />
         </section>
     );
 };

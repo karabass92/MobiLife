@@ -65,7 +65,9 @@ export interface ICartItem {
     products: number,
     price_per_prod: number,
     total_price_per_position: number,
-    total_price_of_customer_cart: number
+    total_price_of_customer_cart: number,
+    name_product: string,
+    product_images: Array<string>
 }
 
 export interface ICart {

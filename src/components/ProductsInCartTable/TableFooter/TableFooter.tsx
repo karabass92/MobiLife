@@ -12,6 +12,7 @@ const TableFooter = ({
     productCount,
     totalPrice
 }: Props) => {
+
     return (
         <section className={style.main}>
             {

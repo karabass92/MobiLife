@@ -21,7 +21,7 @@ const HeaderCart = () => {
 
     useEffect(() => {
         if(!isError && !isLoading) {
-            dispatch(setAllProducts(data.map((el:ICartItem )=> el.id)));
+            dispatch(setAllProducts(data.map((el:ICartItem )=> el.products)));
         } 
     }, [data, isError, isLoading]);
 

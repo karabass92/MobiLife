@@ -1,4 +1,5 @@
 import ItemCounter from './ItemCounter/ItemCounter';
+import { mediaURL } from '../../../constants/api';
 import style from './TableItem.module.scss';
 import check from '../../../assets/img/Cart/check.svg';
 import cross from '../../../assets/img/Cart/cross.svg';
@@ -6,48 +7,44 @@ import noImg from '../../../assets/img/Main/noImg.jpg'
 
 
 type Props = {
-    photo?: string,
-    info?: {
-        name: string,
-        color?: string,
-        params?: string
-    },
+    photo: Array<string>,
+    name: string,
     price: number,
-    count: number
+    totalPrice: number,
+    count: number,
+    id: number
 };
 
 
 const TableItem = ({
     photo,
-    info,
+    name,
     price,
-    count
+    totalPrice,
+    count,
+    id
 }: Props) => {
+
     return (
         <div className={style.tableItem}>
             <div className={style.imgContainer}>
                 <img src={check} alt="check" /> 
             </div>
             <div className={style.productImage} >
-                {
-                    photo
-                    ? <img src={photo} alt={info?.name} />
-                    : <img  src={noImg}  alt='no image' />
-                }
+                <img src={ photo.length > 0 
+                        ? `${mediaURL}${photo[0]}`
+                        : noImg
+                    } alt={name}/>
             </div>
             <div className={style.productInfo}>
-                {
-                    `${info?.name}, 
-                    ${info?.color ? `${info?.color},` : null} 
-                    ${info?.params ? `${info?.params},` : null} `
-                }
+                {name}
             </div>
             <div>
                 {price}
             </div>
-            <ItemCounter count={count} />
+            <ItemCounter productId={id} count={count} />
             <div>
-                {count * price}
+                {totalPrice}
             </div>
             <div className={style.imgContainer}>
                 <img src={cross} alt="delete" />
