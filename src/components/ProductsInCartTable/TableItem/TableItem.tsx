@@ -32,7 +32,7 @@ const TableItem = ({
 
     return (
         <div className={style.tableItem}>
-            <div className={style.imgContainer}>
+            <div className={style.imgCheckContainer}>
                 <img src={check} alt="check" /> 
             </div>
             <div className={style.productImage} >
@@ -48,7 +48,7 @@ const TableItem = ({
                 {price}
             </div>
             <ItemCounter productId={productId} count={count} />
-            <div>
+            <div className={style.totalPrice}>
                 {totalPrice}
             </div>
             <button 

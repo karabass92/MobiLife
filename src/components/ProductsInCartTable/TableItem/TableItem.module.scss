@@ -16,6 +16,12 @@
         font-size: 16px;
         line-height: 70px;
     }
+    & .imgCheckContainer {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        background-color: #fff;
+    }
     & .imgContainer {
         display: flex;
         align-self: center;
@@ -47,4 +53,59 @@
     display: flex;
     flex-wrap: wrap;
     line-height: 70px;
+}
+
+@media(max-width:900px){
+    .tableItem {
+        grid-template-columns: 
+            70px
+            minmax(150px, 1fr) 
+            125px
+            minmax(min(132px, 10vw), 1fr) 
+            125px
+            5%;
+        & .imgCheckContainer {
+            display: none;
+        }
+    }
+}
+
+@media(max-width:699px){
+    .tableItem {
+        grid-template-columns: 
+            70px
+            minmax(150px, 1fr) 
+            125px
+            minmax(min(132px, 10vw), 1fr) 
+            125px
+            5%;
+    }
+}
+
+@media(max-width:630px){
+    .tableItem {
+        grid-template-columns: 
+            70px
+            minmax(150px, 1fr) 
+            125px
+            minmax(min(132px, 10vw), 1fr) 
+            5%;
+        & .totalPrice {
+            display: none;
+        }
+    }
+}
+
+@media(max-width:480px){
+    .tableItem {
+        grid-template-columns: 
+            minmax(150px, 1fr) 
+            30%
+            minmax(min(132px, 10vw), 1fr) 
+            0px
+            5%;
+        & .productImage {
+            display: none;
+        }
+    }
 }

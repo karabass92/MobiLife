@@ -1,5 +1,5 @@
 .main {
-    padding: 0 110px;
+    padding: 0 min(110px, 4vw);
     display: flex;
     justify-content: flex-end;
     gap: 20px;
@@ -10,5 +10,22 @@
     }
     & a {
         margin: 0;;
+    }
+}
+
+@media(max-width:630px){
+    .main {
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        & p {
+            font-size: 21px;
+            font-weight: 600;
+            line-height: 52px;
+        }
+        & a {
+            margin: 0;;
+        }
     }
 }

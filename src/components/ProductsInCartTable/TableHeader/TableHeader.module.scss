@@ -18,3 +18,60 @@
         line-height: 65px;
     }
 }
+
+@media(max-width:900px){
+    .tableHeader {
+        grid-template-columns: 
+            0px 
+            70px
+            minmax(150px, 1fr) 
+            125px
+            minmax(min(132px, 10vw), 1fr) 
+            125px
+            5%;
+    }
+}
+
+@media(max-width:699px){
+    .tableHeader {
+        grid-template-columns: 
+            0px 
+            70px
+            minmax(150px, 1fr) 
+            125px
+            minmax(min(132px, 10vw), 1fr) 
+            125px
+            5%;
+    }
+}
+
+@media(max-width:630px){
+    .tableHeader {
+        grid-template-columns: 
+            0px 
+            70px
+            minmax(150px, 1fr) 
+            125px
+            minmax(min(132px, 10vw), 1fr) 
+            0px
+            5%;
+        & .totalPrice {
+            display: none;
+        }
+    }
+}
+
+@media(max-width:480px){
+    .tableHeader {
+        grid-template-columns: 
+            0px 
+            minmax(150px, 1fr) 
+            30%
+            minmax(min(132px, 12vw), 1fr) 
+            0px
+            5%;
+        &  .imgCol {
+            display: none;
+        }
+    }
+}

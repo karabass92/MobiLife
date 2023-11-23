@@ -5,7 +5,7 @@ const TableHeader = () => {
     return (
         <div className={style.tableHeader}>
             <div></div>
-            <div>
+            <div className={style.imgCol}>
                 Фото
             </div>
             <div>
@@ -17,7 +17,7 @@ const TableHeader = () => {
             <div>
                 Количество
             </div>
-            <div>
+            <div className={style.totalPrice}>
                 Стоимость
             </div>
             <div></div>
