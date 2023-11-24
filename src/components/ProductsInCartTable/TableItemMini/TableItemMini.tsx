@@ -1,14 +1,11 @@
+import { mediaURL } from '../../../constants/api';
 import style from './TableItemMini.module.scss';
 import noImg from '../../../assets/img/Main/noImg.jpg';
 
 
 type Props = {
-    photo?: string,
-    info: {
-        name: string,
-        color?: string,
-        params?: string
-    },
+    photo: Array<string>,
+    name: string,
     price: number,
     count: number
 };
@@ -16,25 +13,20 @@ type Props = {
 
 const TableItemMini = ({
     photo,
-    info,
+    name,
     price,
     count
 }: Props) => {
     return (
         <div className={style.tableItem}>
             <div className={style.productImage} >
-                {
-                    photo
-                    ? <img src={photo} alt={info.name} />
-                    : <img  src={noImg}  alt='no image' />
-                }
+                <img src={ photo.length > 0 
+                            ? `${mediaURL}${photo[0]}`
+                            : noImg
+                        } alt={name}/>
             </div>
             <div className={style.productInfo}>
-                {
-                    `${info.name}, 
-                    ${info.color ? `${info.color},` : null} 
-                    ${info.params ? `${info.params},` : null} `
-                }
+                {name}
             </div>
             <div>
                 {price}

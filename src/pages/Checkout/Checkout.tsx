@@ -1,69 +1,41 @@
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
-
 import TableItemMini from "../../components/ProductsInCartTable/TableItemMini/TableItemMini";
 import DefaultButton from "../../components/Button/DefaultButton/DefaultButton";
 import style from './Checkout.module.scss';
+import { cartApi } from "../../store/api/cartApi";
+import { ICartItem } from "../../interfaces/interfaces";
 
 
 const Checkout = () => {
 
-    const data: any[] = [
-        {
-            id: 1,
-            img: '',
-            info: {
-                name: 'блядский утюг',
-                color: 'silver',
-                params: 'здоровый и тяжелый пиздец'
-            },
-            price: 666,
-            count: 1
-        },
-        {
-            id: 2,
-            img: '',
-            info: {
-                name: 'iphone',
-                color: 'silver',
-                params: '128gb'
-            },
-            price: 700000,
-            count: 1
-        },
-        {
-            id: 3,
-            img: '',
-            info: {
-                name: 'iphone',
-                color: 'silver',
-                params: '128gb'
-            },
-            price: 700000,
-            count: 1
-        },
-    ];
+    const { 
+        data,
+        isError,
+        isLoading
+    } = cartApi.useGetProductsQuery('');
+
+    if(isError) return <>Error</>
+    if(isLoading) return <>Loadnig</>
 
     return (
         <main className={style.main}>
             <BreadCrumbs header='Оформить заказ' />
-
             <div className={style.container}>
-
                 <section>
                     Здесть должна быть форма с выбором доставки либо самовывоза, если доставка должны открываться поля типа адрес, телефон, способ оплаты и т.д.
                 </section>
-
                 <section className={style.cart}>
-                    <h2>Товары в корзине</h2>
+                    <h2>Товары в корзине:</h2>
                     <div>
                         {
-                            data.map(el => {
+                            data.map((el:ICartItem) => {
                                 return (
                                     <TableItemMini
                                         key={el.id}
-                                        info={el.info}
-                                        price={el.price}
-                                        count={el.count} />
+                                        name={el.name_product}
+                                        price={el.total_price_per_position}
+                                        count={el.quantity}
+                                        photo={el.product_images} />
                                 )
                             })
                         }
@@ -79,9 +51,7 @@ const Checkout = () => {
                         </button>
                     </div>
                 </section>
-
             </div>
-
         </main>
     )
 };
