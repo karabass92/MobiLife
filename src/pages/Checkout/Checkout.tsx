@@ -4,6 +4,12 @@ import DefaultButton from "../../components/Button/DefaultButton/DefaultButton";
 import style from './Checkout.module.scss';
 import { cartApi } from "../../store/api/cartApi";
 import { ICartItem } from "../../interfaces/interfaces";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Switch from '@mui/material/Switch';
+
+
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 
 const Checkout = () => {
@@ -14,6 +20,10 @@ const Checkout = () => {
         isLoading
     } = cartApi.useGetProductsQuery('');
 
+    const onFinish = () => {
+        console.log('form')
+    }
+
     if(isError) return <>Error</>
     if(isLoading) return <>Loadnig</>
 
@@ -21,9 +31,6 @@ const Checkout = () => {
         <main className={style.main}>
             <BreadCrumbs header='Оформить заказ' />
             <div className={style.container}>
-                <section>
-                    Здесть должна быть форма с выбором доставки либо самовывоза, если доставка должны открываться поля типа адрес, телефон, способ оплаты и т.д.
-                </section>
                 <section className={style.cart}>
                     <h2>Товары в корзине:</h2>
                     <div>
@@ -46,11 +53,17 @@ const Checkout = () => {
                             link="/cart"
                             width={200}
                             height={52} />
-                        <button className={style.orderButton}>
+                        <button className={style.orderButton} onClick={onFinish}>
                             Оформить заказ
                         </button>
                     </div>
                 </section>
+                <Box component='form' className={style.form}>
+                    <Switch {...label} />
+                    <TextField id="standard-basic" label="Телефон" variant="standard" />
+                    <TextField id="standard-basic" label="Адрес" variant="standard" />
+                    <TextField id="standard-basic" label="Имя" variant="standard" />
+                </Box>  
             </div>
         </main>
     )

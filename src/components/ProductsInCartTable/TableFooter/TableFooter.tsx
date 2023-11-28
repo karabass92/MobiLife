@@ -21,7 +21,7 @@ const TableFooter = ({
                         <p>Итого:</p>
                         <p>&#8376; {totalPrice}</p> 
                     </>
-                : null
+                : ''
             }
             
             {

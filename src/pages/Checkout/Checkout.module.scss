@@ -7,6 +7,7 @@
 
 .container {
     display: flex;
+    gap: 30%;
 }
 
 .cart {
@@ -41,6 +42,12 @@
             transition: all 0.3s ease;
         }  
     }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 
