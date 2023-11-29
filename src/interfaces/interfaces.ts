@@ -67,7 +67,8 @@ export interface ICartItem {
     total_price_per_position: number,
     total_price_of_customer_cart: number,
     name_product: string,
-    product_images: Array<string>
+    product_images: Array<string>,
+    price_per_promo?: number
 }
 
 export interface ICart {

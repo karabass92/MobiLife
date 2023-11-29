@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { cartApi } from "../../store/api/cartApi";
 import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
 import DeliveryBanner from "../../components/DeliveryBanner/DeliveryBanner";
@@ -7,11 +8,13 @@ import style from './Cart.module.scss';
 
 const Cart = () => {
 
+    const [promo, setPromo] = useState<string>('');
+
     const { 
         data,
         isError,
         isLoading
-    } = cartApi.useGetProductsQuery('');
+    } = cartApi.useGetProductsQuery(promo);
 
     return (
         <main className={style.main}>
@@ -22,7 +25,8 @@ const Cart = () => {
             <ProductsInCartTable 
                 isError={isError} 
                 isLoading={isLoading} 
-                data={data} />
+                data={data}
+                setPromo={setPromo} />
         </main>
     );
 };

@@ -37,10 +37,11 @@ export const cartApi = createApi({
             invalidatesTags: ['CartItem']
         }),
         getProducts: build.query({
-            query: () => ({
+            query: (promo: string) => ({
                 url: cartVisitorURL,
                 params: {
-                    id: localStorage.getItem('id')
+                    id: localStorage.getItem('id'),
+                    promo: promo.toLocaleLowerCase()
                 }
             }),
             providesTags: ['CartItem']
