@@ -1,17 +1,26 @@
+import { useState } from 'react'
 import LinkButton from '../../Button/LinkButton/LinkButton';
+import CheckoutModal from '../../CheckoutModal/CheckoutModal';
 import style from './TableFooter.module.scss';
+import { IProductToCheckout } from '../../../interfaces/interfaces';
 
 
 type Props = {
     productCount: number,
-    totalPrice: number
+    totalPrice: number,
+    promo: string,
+    products: Array<IProductToCheckout>
 }
 
 
 const TableFooter = ({
     productCount,
-    totalPrice
+    totalPrice,
+    products,
+    promo
 }: Props) => {
+
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
     return (
         <section className={style.main}>
@@ -26,18 +35,23 @@ const TableFooter = ({
             
             {
                 productCount > 0
-                ?   <LinkButton 
-                        text={`Заказать (${productCount})`}
-                        link='/checkout'
-                        width={131}
-                        height={52} />
+                ?   <button 
+                        className={style.checkoutButton} 
+                        onClick={() => setModalIsOpen(true)} >
+                        {`Заказать (${productCount})`}
+                    </button>
                 :   <LinkButton 
                         text={`Перейти в магазин`}
                         link='/shop'
                         width={131}
                         height={52} />
             }
-            
+            <CheckoutModal
+                modalIsOpen={modalIsOpen}
+                setModalIsOpen={setModalIsOpen}
+                totalCartPrice={totalPrice}
+                products={products}
+                promo={promo} />
         </section>
     );
 };

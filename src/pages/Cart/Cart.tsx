@@ -26,7 +26,8 @@ const Cart = () => {
                 isError={isError} 
                 isLoading={isLoading} 
                 data={data}
-                setPromo={setPromo} />
+                setPromo={setPromo}
+                promo={promo} />
         </main>
     );
 };

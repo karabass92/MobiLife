@@ -13,6 +13,24 @@
     }
 }
 
+.checkoutButton {
+    width: 180px;
+    height: 50px;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    background: rgb(25, 177, 178);
+    transition: all 0.3s ease;
+}
+
+.checkoutButton:hover {
+    background: rgb(11, 133, 133);
+    box-shadow: 0 0 5px rgba(12, 87, 87, 0.685);
+    transition: all 0.3s ease;
+}
+
 @media(max-width:630px){
     .main {
         padding: 0;

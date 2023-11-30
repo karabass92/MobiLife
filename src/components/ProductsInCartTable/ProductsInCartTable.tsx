@@ -11,6 +11,7 @@ type Props = {
     data: Array<ICartItem>,
     isError: boolean,
     isLoading: boolean,
+    promo: string,
     setPromo: (promo: string) => void
 }
 
@@ -19,7 +20,8 @@ const ProductsInCartTable = ({
     data,
     isError,
     isLoading,
-    setPromo
+    setPromo,
+    promo
 }: Props) => {
 
     const [inputValue, setInputValue] = useState<string>('');
@@ -80,7 +82,9 @@ const ProductsInCartTable = ({
             }
             <TableFooter 
                 totalPrice={totalPrice} 
-                productCount={totalCount} />
+                productCount={totalCount}
+                products={products}
+                promo={promo} />
         </section>
     );
 };

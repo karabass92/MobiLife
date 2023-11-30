@@ -75,3 +75,13 @@ export interface ICart {
     sessionid: string | null,
     products: Array<ICartItem>
 }
+
+export interface IProductToCheckout {
+    id:number,
+    productId: number,
+    name: string,
+    quantity: number,
+    photo: Array<string>,
+    pricePerPosition: number,
+    price: number
+}
