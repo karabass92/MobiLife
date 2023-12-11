@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { baseURL, cartURL, cartVisitorURL } from '../../constants/api';
+import { baseURL, cartURL, cartVisitorURL, orderURL } from '../../constants/api';
 
 
 type AddToCartPayload = {
@@ -7,7 +7,6 @@ type AddToCartPayload = {
     quantity: number,
     products: number
 }
-
 
 
 export const cartApi = createApi({
@@ -33,6 +32,14 @@ export const cartApi = createApi({
             query: (id) => ({
                 url: `${cartURL}${id}`,
                 method: 'DELETE',
+            }),
+            invalidatesTags: ['CartItem']
+        }),
+        makeOrder: build.mutation<void, any>({
+            query: (body) => ({
+                url: `${orderURL}`,
+                method: 'POST',
+                body: body
             }),
             invalidatesTags: ['CartItem']
         }),
