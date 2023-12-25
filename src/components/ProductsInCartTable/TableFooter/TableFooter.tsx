@@ -49,8 +49,6 @@ const TableFooter = ({
             <CheckoutModal
                 modalIsOpen={modalIsOpen}
                 setModalIsOpen={setModalIsOpen}
-                totalCartPrice={totalPrice}
-                products={products}
                 promo={promo} />
         </section>
     );

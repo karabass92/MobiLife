@@ -1,0 +1,46 @@
+form {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+    & .inputItem {
+        width: 80%;
+        height: 50px;
+        border-bottom: 1px solid #686767;
+        transition: all 0.3s ease;
+    }
+    & .inputItem:focus {
+        border-bottom: 1px solid rgb(25, 177, 178);
+        transition: all 0.3s ease;
+    }
+    & .inputItem:disabled {
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+    & .checkoutButton {
+        padding: 14px;
+        text-align: center;
+        width: 180px;
+        height: 50px;
+        border-radius: 15px;
+        color: white;
+        font-size: 18px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        background: rgb(25, 177, 178);
+        transition: all 0.3s ease;
+    }
+    & .checkoutButton:hover {
+        background: rgb(11, 133, 133);
+        box-shadow: 0 0 5px rgba(12, 87, 87, 0.685);
+        transition: all 0.3s ease;
+    }
+    & .deliveryBlock {
+        display: block;
+        width: 80%;
+        & span {
+            font-size: 15px;
+            font-weight: 500;
+        }
+    }
+}
