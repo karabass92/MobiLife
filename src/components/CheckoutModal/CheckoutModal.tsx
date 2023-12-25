@@ -6,6 +6,7 @@ import style from './CheckoutModal.module.scss'
 import { IProductToCheckout } from '../../interfaces/interfaces'
 import { v1 } from 'uuid'
 import SuccesCheckout from '../SuccesCheckout/SuccesCheckout'
+import CheckoutError from '../CheckoutError/CheckoutError'
 
 
 type Props = {
@@ -49,7 +50,7 @@ const CheckoutModal = ({
             setModalIsOpen(false)
             localStorage.clear()
             localStorage.setItem('id', v1())
-        }   
+        } 
     };
 
     return (
@@ -61,7 +62,7 @@ const CheckoutModal = ({
             <div className={`${style.formContainer} ${modalIsOpen && style.visible}`}>
                 <img src={cross} alt="close" onClick={() => setModalIsOpen(false)} className={style.closeImg} />
                 { isError
-                    ? 'КАКАЯ ТО ХУЕТА'
+                    ? <CheckoutError />
                     :   isSuccess
                     ?   <SuccesCheckout />
                     :   <>
