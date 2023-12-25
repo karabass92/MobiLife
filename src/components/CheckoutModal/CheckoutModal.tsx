@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { Switch } from '@mui/material';
-import { cartApi } from '../../store/api/cartApi';
+import { useState } from 'react'
+import { Switch } from '@mui/material'
+import { cartApi } from '../../store/api/cartApi'
 import cross from '../../assets/img/Cart/cross.svg'
-import style from './CheckoutModal.module.scss';
-import { IProductToCheckout } from '../../interfaces/interfaces';
+import style from './CheckoutModal.module.scss'
+import { IProductToCheckout } from '../../interfaces/interfaces'
 import { v1 } from 'uuid'
+import SuccesCheckout from '../SuccesCheckout/SuccesCheckout'
 
 
 type Props = {
@@ -58,11 +59,11 @@ const CheckoutModal = ({
                 onClick={() => setModalIsOpen(false)}>
             </div>
             <div className={`${style.formContainer} ${modalIsOpen && style.visible}`}>
-                <img src={cross} alt="close" onClick={() => setModalIsOpen(false)} />
+                <img src={cross} alt="close" onClick={() => setModalIsOpen(false)} className={style.closeImg} />
                 { isError
                     ? 'КАКАЯ ТО ХУЕТА'
                     :   isSuccess
-                    ?   'ВСЕ ЗАЕБУМБА'
+                    ?   <SuccesCheckout />
                     :   <>
                         <h2>Оформление заказа</h2>
                         <form action="">
