@@ -4,6 +4,7 @@ form {
     flex-direction: column;
     align-items: center;
     & .inputItem {
+        position: relative;
         width: 80%;
         height: 50px;
         border-bottom: 1px solid #686767;
@@ -43,4 +44,10 @@ form {
             font-weight: 500;
         }
     }
+}
+
+.errorMessage {
+    display: block;
+    color: #D75A4A;
+    font-size: 12px;
 }

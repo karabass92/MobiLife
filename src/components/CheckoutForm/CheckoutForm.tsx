@@ -1,7 +1,7 @@
 import { Switch } from '@mui/material'
 import { v1 } from 'uuid'
 import style from './CheckoutForm.module.scss'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 
 type Props = {
@@ -53,6 +53,19 @@ const CheckoutForm = ({
         formState: { errors },
     } = useForm<Inputs>()
 
+    // const data = {
+    //     user_session: localStorage.id,
+    //     user_name: name,
+    //     user_telephone: telephone,
+    //     order_delivery: delivery,
+    //     order_delivery_address: adress,
+    //     promo: promo
+    // }
+
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        console.log(data)
+    }
+
     const onFinish = () => {
         const data = {
             user_session: localStorage.id,
@@ -75,26 +88,38 @@ const CheckoutForm = ({
     };
 
     return (
-        <form>
-            <input
-                type='text'
-                placeholder='Имя'
-                className={style.inputItem}
-                value={name}
-                onChange={(e) => setName(e.currentTarget.value)} />
-            <input
-                type='text'
-                placeholder='Телефон'
-                className={style.inputItem}
-                value={telephone}
-                onChange={(e) => setTelephone(e.currentTarget.value)} />
-            <input
-                type='text'
-                placeholder='Адрес доставки'
-                className={style.inputItem}
-                disabled={!delivery}
-                value={adress}
-                onChange={(e) => setAdress(e.currentTarget.value)} />
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <section className={style.inputItem}>
+                <input
+                    type='text'
+                    placeholder='Имя'
+                    className={style.inputItem}
+                    value={name}
+                    {...register("name", { required: true, maxLength: 10 })}
+                    onChange={(e) => setName(e.currentTarget.value)} />
+                {errors.name && <span className={style.errorMessage}>Данное поле необходимо заполнить</span>}
+            </section>
+            <section className={style.inputItem}>
+                <input
+                    type='text'
+                    placeholder='Телефон'
+                    className={style.inputItem}
+                    value={telephone}
+                    {...register("telephone", { required: true })}
+                    onChange={(e) => setTelephone(e.currentTarget.value)} />
+                {errors.telephone && <span className={style.errorMessage}>Данное поле необходимо заполнить</span>}
+            </section>
+            <section className={style.inputItem}>
+                <input
+                    type='text'
+                    placeholder='Адрес доставки'
+                    className={style.inputItem}
+                    disabled={!delivery}
+                    {...register("adress", { required: delivery })}
+                    value={adress}
+                    onChange={(e) => setAdress(e.currentTarget.value)} />
+                {errors.adress && <span className={style.errorMessage}>Данное поле необходимо заполнить</span>}
+            </section>
             <div className={style.deliveryBlock}>
                 <Switch
                     color="default"
@@ -111,6 +136,7 @@ const CheckoutForm = ({
                 disabled={isLoading} >
                 {isLoading ? 'Секундочку...' : 'Оформить заказ'}
             </button>
+            <input className={style.checkoutButton} type="submit" />
         </form>
     );
 };
