@@ -9,6 +9,8 @@ const ProductsToShowCount = () => {
     const products = useAppSelector(selectProducts);
     const productsOnPage = products.length;
 
+    if(!productsOnPage) return null
+
     return (
         <section className={style.main}>
             Показано: {productsOnPage} из {totalProductsCount} товаров

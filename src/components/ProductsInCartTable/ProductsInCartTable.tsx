@@ -5,6 +5,7 @@ import TableFooter from './TableFooter/TableFooter';
 import style from './ProductsInCartTable.module.scss';
 import { ICartItem } from '../../interfaces/interfaces';
 import { TextField } from '@mui/material';
+import Spinner from '../Spinner/Spinner';
 
 
 type Props = {
@@ -27,7 +28,7 @@ const ProductsInCartTable = ({
     const [inputValue, setInputValue] = useState<string>('');
 
     if(isError) return <>Error</>
-    if(isLoading) return <>Loadnig</>
+    if(isLoading) return <Spinner />
 
     const products = data?.map(el => {
         return {

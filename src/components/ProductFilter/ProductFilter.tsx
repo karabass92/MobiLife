@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import style from './ProductFilter.module.scss';
 import { categoriesApi } from '../../store/api/categoriesApi';
+import Spinner from '../Spinner/Spinner';
 
 
 type Props = {
@@ -25,7 +26,7 @@ const ProductFilter = ({
     const [open, setOpen] = useState<boolean>(false);
 
     if(isErrorCategories) return <h1>Error</h1>
-    if(isLoadingCategories) return <h1>Loading</h1>
+    if(isLoadingCategories) return <Spinner />
 
     return (
         <section className={style.main}>
