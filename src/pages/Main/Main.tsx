@@ -1,3 +1,4 @@
+import MainBanner from '../../components/MainBanner/MainBanner'
 import ImportantDetails from '../../components/ImportantDetails/ImportantDetails'
 import style from './Main.module.scss'
 
@@ -5,9 +6,7 @@ import style from './Main.module.scss'
 const Main = () => {
     return (
         <main className={style.main}>
-            <div>
-                BANNER
-            </div>
+            <MainBanner />
             <div>
                 NEW PRODUCTS
             </div>

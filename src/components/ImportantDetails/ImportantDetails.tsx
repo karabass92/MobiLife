@@ -11,24 +11,30 @@ const ImportantDetails = () => {
             <h2 className={style.sectionHeader}>Что для нас важно</h2>
             <section className={style.importantBlock}>
                 <article className={style.importantItem}>
-                    <img src={important1} alt="img" />
+                    <div className={style.imgContainer}>
+                        <img src={important1} alt='img' />
+                    </div>
                     <h3>Ассортимент</h3>
                     <p>
                         Мобильные аксуссуары, зарядные устройства, чехлы для Ваших устройсв, и многое другое
                     </p>
                 </article>
                 <article className={style.importantItem}>
-                    <img src={important2} alt='img' />
+                    <div className={style.imgContainer}>
+                        <img src={important2} alt='img' />
+                    </div>
                     <h3>Удобство</h3>
                     <p>
                         Оплата Kaspi Red, возможность покупки в рассрочку (0-0-12), бесплатная доставка
                     </p>
                 </article>
                 <article className={style.importantItem}>
-                    <img src={important3} alt="img" />
+                    <div className={style.imgContainer}>
+                        <img src={important3} alt='img' />
+                    </div>
                     <h3>Ответственность</h3>
                     <p>
-                        Мы заботимся о наших клиентах. Грамотная консультация, компетентные и 
+                        Мы заботимся о наших клиентах. Грамотная консультация, компетентные и
                         вежливые сотрудники - все это MobiLife
                     </p>
                 </article>
